@@ -1,0 +1,5 @@
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.BLL\obj\Debug\ResolveAssemblyReference.cache
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.BLL\bin\Debug\PayRoll.BLL.dll
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.BLL\bin\Debug\PayRoll.BLL.pdb
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.BLL\obj\Debug\PayRoll.BLL.dll
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.BLL\obj\Debug\PayRoll.BLL.pdb

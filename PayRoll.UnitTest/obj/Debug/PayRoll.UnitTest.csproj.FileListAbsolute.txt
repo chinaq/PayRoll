@@ -1,0 +1,9 @@
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.pdb
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\nunit.framework.dll
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\nunit.framework.xml
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\obj\Debug\ResolveAssemblyReference.cache
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\obj\Debug\PayRoll.UnitTest.dll
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\obj\Debug\PayRoll.UnitTest.pdb
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.BLL.dll
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.BLL.pdb

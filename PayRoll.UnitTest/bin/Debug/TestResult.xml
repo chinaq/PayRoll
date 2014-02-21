@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-02-21" time="16:33:00">
+  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.3655" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug" machine-name="TERRYQ-A6092DCD" user="TerryQ" user-domain="TERRYQ-A6092DCD" />
+  <culture-info current-culture="zh-CN" current-uiculture="zh-CN" />
+  <test-suite type="Assembly" name="D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" executed="True" result="Success" success="True" time="0.156" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="PayRoll" executed="True" result="Success" success="True" time="0.156" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="UnitTest" executed="True" result="Success" success="True" time="0.156" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="BLL" executed="True" result="Success" success="True" time="0.156" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="AddSalariedEmployeeTest" executed="True" result="Success" success="True" time="0.156" asserts="0">
+                    <results>
+                      <test-case name="PayRoll.UnitTest.BLL.AddSalariedEmployeeTest.TestAddSalariedEmployee" executed="True" result="Success" success="True" time="0.125" asserts="6" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

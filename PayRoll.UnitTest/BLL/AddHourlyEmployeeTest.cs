@@ -15,7 +15,7 @@ namespace PayRoll.UnitTest.BLL
         public void TestAddHourlyEmployee()
         {
             AddEmployeeTransaction addEmp = new AddHourlyEmployee(2, "Cala", "Selee Street", 0.8);
-            addEmp.Excute();
+            addEmp.Execute();
             Employee emp = PayrollDatabase.GetEmployee(2);
             Assert.IsNotNull(emp);
 

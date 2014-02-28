@@ -7,6 +7,6 @@ namespace PayRoll.BLL
 {
     public interface Transaction
     {
-        void Excute();
+        void Execute();
     }
 }

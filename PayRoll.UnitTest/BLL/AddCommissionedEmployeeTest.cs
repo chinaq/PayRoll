@@ -14,7 +14,7 @@ namespace PayRoll.UnitTest.BLL
         public void TestAddCommissionedEmployee()
         {
             AddEmployeeTransaction addEmp = new AddCommissionedEmployee(3, "Dalai", "Bree Street", 0.6, 0.7);
-            addEmp.Excute();
+            addEmp.Execute();
             Employee emp = PayrollDatabase.GetEmployee(3);
             Assert.IsNotNull(emp);
 

@@ -15,7 +15,7 @@ namespace PayRoll.UnitTest.BLL
         public void TestAddSalariedEmployee()
         {
             AddEmployeeTransaction addEmp = new AddSalariedEmployee(1, "Bob", "Street Lasa", 1800);
-            addEmp.Excute();
+            addEmp.Execute();
             Employee emp = PayrollDatabase.GetEmployee(1);
             Assert.IsNotNull(emp);
 

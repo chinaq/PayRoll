@@ -27,7 +27,7 @@ namespace PayRoll.BLL
 
         #region Transaction 成员
 
-        public void Excute()
+        public void Execute()
         {
             Employee emp = new Employee(empid, name, address);
             PaymentClassification pc = MakeClassification();

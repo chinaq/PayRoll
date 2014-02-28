@@ -19,5 +19,10 @@ namespace PayRoll.BLL
         {
             employees[id] = emloyee;
         }
+
+        internal static void DeleteEmployee(int id)
+        {
+            employees.Remove(id);
+        }
     }
 }

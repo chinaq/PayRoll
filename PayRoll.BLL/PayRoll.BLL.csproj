@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddEmployeeTransaction.cs" />
+    <Compile Include="AddHourlyEmployee.cs" />
     <Compile Include="AddSalariedEmployee.cs" />
     <Compile Include="BiWeeklySchedule.cs" />
     <Compile Include="CommissionClassification.cs" />

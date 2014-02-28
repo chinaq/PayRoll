@@ -28,7 +28,7 @@ namespace PayRoll.UnitTest.BLL
             Assert.IsTrue(method is HoldMethod);
             Assert.IsTrue(schedule is MonthlySchedule);
 
-            SalariedClassifiction salaryClassifiction = classifiction as SalariedClassifiction;
+            SalariedClassifiction salaryClassifiction = classifiction as SalariedClassifiction;     //as 不会报错，只会返回空
             Assert.AreEqual(1800, salaryClassifiction.Salary, 0.0001);
         }
     }

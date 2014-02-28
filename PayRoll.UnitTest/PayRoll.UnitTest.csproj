@@ -48,6 +48,7 @@
     <Compile Include="BLL\AddHourlyEmployeeTest.cs" />
     <Compile Include="BLL\AddSalariedEmployeeTest.cs" />
     <Compile Include="BLL\DeleteEmployeeTest.cs" />
+    <Compile Include="BLL\TimeCardTransactionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

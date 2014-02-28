@@ -14,7 +14,7 @@ namespace PayRoll.UnitTest.BLL
         [Test]
         public void TestAddHourlyEmployee()
         {
-            AddEmployeeTransaction addEmp = new AddHourlyEmployee(2, "Cala", "Selee Street", 20);
+            AddEmployeeTransaction addEmp = new AddHourlyEmployee(2, "Cala", "Selee Street", 0.8);
             addEmp.Excute();
             Employee emp = PayrollDatabase.GetEmployee(2);
             Assert.IsNotNull(emp);
@@ -29,7 +29,7 @@ namespace PayRoll.UnitTest.BLL
             Assert.IsTrue(schedule is WeeklySchedule);
 
             HourlyClassification hourlyClassifiction = classification as HourlyClassification;
-            Assert.AreEqual(20, hourlyClassifiction.HourlyRate, 0.0001);
+            Assert.AreEqual(0.8, hourlyClassifiction.HourlyRate, 0.0001);
         }
     }
 }

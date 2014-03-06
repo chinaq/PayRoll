@@ -12,7 +12,7 @@ namespace PayRoll.UnitTest.BLL
     public class AddSalariedEmployeeTest
     {
         [Test]
-        public void TestAddSalariedEmployee()
+        public void ExecuteTest()
         {
             AddEmployeeTransaction addEmp = new AddSalariedEmployee(1, "Bob", "Street Lasa", 1800);
             addEmp.Execute();

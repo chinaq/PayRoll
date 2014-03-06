@@ -12,7 +12,7 @@ namespace PayRoll.UnitTest.BLL
     public class TimeCardTransactionTest
     {
         [Test]
-        public void TestTiemCardTransaction()
+        public void ExecuteTest()
         {
             int empId = 5;
             AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);

@@ -11,7 +11,7 @@ namespace PayRoll.UnitTest.BLL
     public class DeleteEmployeeTest
     {
         [Test]
-        public void TestDeleteEmplyee()
+        public void ExecuteTest()
         {
             AddCommissionedEmployee t =
                 new AddCommissionedEmployee(

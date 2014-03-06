@@ -1,39 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-02-28" time="16:57:23">
+<test-results name="D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-03-06" time="15:51:38">
   <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.3655" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\Program Files\NUnit 2.6.2\bin" machine-name="TERRYQ-A6092DCD" user="TerryQ" user-domain="TERRYQ-A6092DCD" />
   <culture-info current-culture="zh-CN" current-uiculture="zh-CN" />
-  <test-suite type="Assembly" name="D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" executed="True" result="Success" success="True" time="0.313" asserts="0">
+  <test-suite type="Assembly" name="D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" executed="True" result="Success" success="True" time="0.375" asserts="0">
     <results>
-      <test-suite type="Namespace" name="PayRoll" executed="True" result="Success" success="True" time="0.297" asserts="0">
+      <test-suite type="Namespace" name="PayRoll" executed="True" result="Success" success="True" time="0.375" asserts="0">
         <results>
-          <test-suite type="Namespace" name="UnitTest" executed="True" result="Success" success="True" time="0.297" asserts="0">
+          <test-suite type="Namespace" name="UnitTest" executed="True" result="Success" success="True" time="0.375" asserts="0">
             <results>
-              <test-suite type="Namespace" name="BLL" executed="True" result="Success" success="True" time="0.297" asserts="0">
+              <test-suite type="Namespace" name="BLL" executed="True" result="Success" success="True" time="0.375" asserts="0">
                 <results>
-                  <test-suite type="TestFixture" name="AddCommissionedEmployeeTest" executed="True" result="Success" success="True" time="0.156" asserts="0">
+                  <test-suite type="TestFixture" name="AddCommissionedEmployeeTest" executed="True" result="Success" success="True" time="0.125" asserts="0">
                     <results>
-                      <test-case name="PayRoll.UnitTest.BLL.AddCommissionedEmployeeTest.TestAddCommissionedEmployee" executed="True" result="Success" success="True" time="0.109" asserts="7" />
+                      <test-case name="PayRoll.UnitTest.BLL.AddCommissionedEmployeeTest.ExecuteTest" executed="True" result="Success" success="True" time="0.094" asserts="7" />
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="AddHourlyEmployeeTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                  <test-suite type="TestFixture" name="AddHourlyEmployeeTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
-                      <test-case name="PayRoll.UnitTest.BLL.AddHourlyEmployeeTest.TestAddHourlyEmployee" executed="True" result="Success" success="True" time="0.000" asserts="6" />
+                      <test-case name="PayRoll.UnitTest.BLL.AddHourlyEmployeeTest.ExecuteTest" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                     </results>
                   </test-suite>
                   <test-suite type="TestFixture" name="AddSalariedEmployeeTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
-                      <test-case name="PayRoll.UnitTest.BLL.AddSalariedEmployeeTest.TestAddSalariedEmployee" executed="True" result="Success" success="True" time="0.000" asserts="6" />
+                      <test-case name="PayRoll.UnitTest.BLL.AddSalariedEmployeeTest.ExecuteTest" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                     </results>
                   </test-suite>
                   <test-suite type="TestFixture" name="DeleteEmployeeTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
-                      <test-case name="PayRoll.UnitTest.BLL.DeleteEmployeeTest.TestDeleteEmplyee" executed="True" result="Success" success="True" time="0.016" asserts="3" />
+                      <test-case name="PayRoll.UnitTest.BLL.DeleteEmployeeTest.ExecuteTest" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="SalesReceiptTranscationTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                    <results>
+                      <test-case name="PayRoll.UnitTest.BLL.SalesReceiptTranscationTest.ExecuteTest" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                     </results>
                   </test-suite>
                   <test-suite type="TestFixture" name="TimeCardTransactionTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
-                      <test-case name="PayRoll.UnitTest.BLL.TimeCardTransactionTest.TestTiemCardTransaction" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                      <test-case name="PayRoll.UnitTest.BLL.TimeCardTransactionTest.ExecuteTest" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                     </results>
                   </test-suite>
                 </results>

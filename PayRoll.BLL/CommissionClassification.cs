@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace PayRoll.BLL
 {
@@ -9,6 +10,8 @@ namespace PayRoll.BLL
     {
         private double baseRate;
         private double commissionRate;
+        private Hashtable salesReceipts = new Hashtable(); 
+
 
         public double BaseRate
         {
@@ -25,5 +28,16 @@ namespace PayRoll.BLL
             this.baseRate = baseRate;
             this.commissionRate = commissionRate;
         }
+
+        public void AddSalesReceipt(SalesReceipt salesReceipt)
+        {
+            salesReceipts[salesReceipt.Date] = salesReceipt;
+        }
+
+        public SalesReceipt GetSalesReceipt(DateTime date)
+        {
+            return salesReceipts[date] as SalesReceipt;
+        }
+    
     }
 }

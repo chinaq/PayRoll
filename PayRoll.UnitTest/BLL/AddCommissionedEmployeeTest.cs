@@ -11,7 +11,7 @@ namespace PayRoll.UnitTest.BLL
     public class AddCommissionedEmployeeTest
     {
         [Test]
-        public void TestAddCommissionedEmployee()
+        public void ExecuteTest()
         {
             AddEmployeeTransaction addEmp = new AddCommissionedEmployee(3, "Dalai", "Bree Street", 0.6, 0.7);
             addEmp.Execute();

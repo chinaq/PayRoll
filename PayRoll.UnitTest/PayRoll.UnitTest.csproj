@@ -47,6 +47,8 @@
     <Compile Include="BLL\AddCommissionedEmployeeTest.cs" />
     <Compile Include="BLL\AddHourlyEmployeeTest.cs" />
     <Compile Include="BLL\AddSalariedEmployeeTest.cs" />
+    <Compile Include="BLL\ChangeAddressTransactionTest.cs" />
+    <Compile Include="BLL\ChangeNameTransactionTest.cs" />
     <Compile Include="BLL\DeleteEmployeeTest.cs" />
     <Compile Include="BLL\SalesReceiptTranscationTest.cs" />
     <Compile Include="BLL\ServiceChargeTransactionTest.cs" />

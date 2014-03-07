@@ -13,6 +13,9 @@ namespace PayRoll.BLL
         private PaymentClassification classification;
         private PaymentMethod method;
         private PaymentSchedule schedule;
+        private Affiliation affiliation;
+
+        
 
         public int Empid
         {
@@ -48,6 +51,13 @@ namespace PayRoll.BLL
             get { return schedule; }
             set { schedule = value; }
         }
+
+        public Affiliation Affiliation
+        {
+            get { return affiliation; }
+            set { affiliation = value; }
+        }
+
 
 
         public Employee(int empid, string name, string address)

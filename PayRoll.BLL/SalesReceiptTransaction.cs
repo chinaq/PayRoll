@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PayRoll.BLL
 {
-    public class SalesReceiptTransaction: Transaction
+    public class SalesReceiptTransaction : Transaction
     {
         private readonly DateTime date;
         private readonly double amount;

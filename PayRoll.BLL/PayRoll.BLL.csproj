@@ -47,8 +47,12 @@
     <Compile Include="Affiliation.cs" />
     <Compile Include="BiWeeklySchedule.cs" />
     <Compile Include="ChangeAddressTransaction.cs" />
+    <Compile Include="ChangeClassificationTranscation.cs" />
+    <Compile Include="ChangeCommissionedTransaction.cs" />
     <Compile Include="ChangeEmployeeTransaction.cs" />
+    <Compile Include="ChangeHourlyTransaction.cs" />
     <Compile Include="ChangeNameTransaction.cs" />
+    <Compile Include="ChangeSalariedTransaction.cs" />
     <Compile Include="CommissionClassification.cs" />
     <Compile Include="DeleteEmployeeTransaction.cs" />
     <Compile Include="Employee.cs" />

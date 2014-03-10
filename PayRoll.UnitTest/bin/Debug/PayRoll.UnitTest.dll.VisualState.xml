@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
-  <TopNode>[0-1012]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</TopNode>
-  <SelectedNode>[0-1014]PayRoll.UnitTest</SelectedNode>
+  <TopNode>[0-1024]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</TopNode>
+  <SelectedNode>[0-1024]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1012]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" Expanded="true" />
-    <Node UniqueName="[0-1013]PayRoll" Expanded="true" />
-    <Node UniqueName="[0-1014]PayRoll.UnitTest" Expanded="true" />
-    <Node UniqueName="[0-1015]PayRoll.UnitTest.BLL" Expanded="true" />
-    <Node UniqueName="[0-1008]PayRoll.UnitTest.BLL.AddCommissionedEmployeeTest" Expanded="true" />
+    <Node UniqueName="[0-1024]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" Expanded="true" />
+    <Node UniqueName="[0-1025]PayRoll" Expanded="true" />
+    <Node UniqueName="[0-1026]PayRoll.UnitTest" Expanded="true" />
+    <Node UniqueName="[0-1027]PayRoll.UnitTest.BLL" Expanded="true" />
+    <Node UniqueName="[0-1010]PayRoll.UnitTest.BLL.AddCommissionedEmployeeTest" Expanded="true" />
     <Node UniqueName="[0-1004]PayRoll.UnitTest.BLL.AddHourlyEmployeeTest" Expanded="true" />
     <Node UniqueName="[0-1000]PayRoll.UnitTest.BLL.AddSalariedEmployeeTest" Expanded="true" />
+    <Node UniqueName="[0-1016]PayRoll.UnitTest.BLL.ChangeAddressTransactionTest" Expanded="true" />
+    <Node UniqueName="[0-1022]PayRoll.UnitTest.BLL.ChangeCommissionedTransactionTest" Expanded="true" />
+    <Node UniqueName="[0-1018]PayRoll.UnitTest.BLL.ChangeHourlyTransactionTest" Expanded="true" />
+    <Node UniqueName="[0-1014]PayRoll.UnitTest.BLL.ChangeNameTransactionTest" Expanded="true" />
+    <Node UniqueName="[0-1020]PayRoll.UnitTest.BLL.ChangeSalariedTransactionTest" Expanded="true" />
     <Node UniqueName="[0-1006]PayRoll.UnitTest.BLL.DeleteEmployeeTest" Expanded="true" />
-    <Node UniqueName="[0-1010]PayRoll.UnitTest.BLL.SalesReceiptTranscationTest" Expanded="true" />
+    <Node UniqueName="[0-1008]PayRoll.UnitTest.BLL.SalesReceiptTranscationTest" Expanded="true" />
+    <Node UniqueName="[0-1012]PayRoll.UnitTest.BLL.ServiceChargeTransactionTest" Expanded="true" />
     <Node UniqueName="[0-1002]PayRoll.UnitTest.BLL.TimeCardTransactionTest" Expanded="true" />
   </Nodes>
 </VisualState>

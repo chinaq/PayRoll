@@ -47,6 +47,7 @@
     <Compile Include="Affiliation.cs" />
     <Compile Include="BiWeeklySchedule.cs" />
     <Compile Include="ChangeAddressTransaction.cs" />
+    <Compile Include="ChangeAffiliationTransaction.cs" />
     <Compile Include="ChangeClassificationTranscation.cs" />
     <Compile Include="ChangeCommissionedTransaction.cs" />
     <Compile Include="ChangeDirectTransaction.cs" />
@@ -54,9 +55,11 @@
     <Compile Include="ChangeHoldTransaction.cs" />
     <Compile Include="ChangeHourlyTransaction.cs" />
     <Compile Include="ChangeMailTransaction.cs" />
+    <Compile Include="ChangeMemberTransaction.cs" />
     <Compile Include="ChangeMethodTranscation.cs" />
     <Compile Include="ChangeNameTransaction.cs" />
     <Compile Include="ChangeSalariedTransaction.cs" />
+    <Compile Include="ChangeUnaffiliatedTransaction.cs" />
     <Compile Include="CommissionClassification.cs" />
     <Compile Include="DeleteEmployeeTransaction.cs" />
     <Compile Include="DirectMethod.cs" />
@@ -65,6 +68,7 @@
     <Compile Include="HourlyClassification.cs" />
     <Compile Include="MailMethod.cs" />
     <Compile Include="MonthlySchedule.cs" />
+    <Compile Include="NoAffiliation.cs" />
     <Compile Include="PaymentClassification.cs" />
     <Compile Include="PaymentMethod.cs" />
     <Compile Include="PaymentSchedule.cs" />

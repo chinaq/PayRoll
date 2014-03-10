@@ -53,8 +53,10 @@
     <Compile Include="BLL\ChangeHoldTransactionTest.cs" />
     <Compile Include="BLL\ChangeHourlyTransactionTest.cs" />
     <Compile Include="BLL\ChangeMailTransactionTest.cs" />
+    <Compile Include="BLL\ChangeMemberTransactionTest.cs" />
     <Compile Include="BLL\ChangeNameTransactionTest.cs" />
     <Compile Include="BLL\ChangeSalariedTransactionTest.cs" />
+    <Compile Include="BLL\ChangeUnaffiliationTransactionTest.cs" />
     <Compile Include="BLL\DeleteEmployeeTest.cs" />
     <Compile Include="BLL\SalesReceiptTranscationTest.cs" />
     <Compile Include="BLL\ServiceChargeTransactionTest.cs" />

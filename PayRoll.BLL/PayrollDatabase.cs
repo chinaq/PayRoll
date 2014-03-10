@@ -21,7 +21,7 @@ namespace PayRoll.BLL
             employees[id] = emloyee;
         }
 
-        internal static void DeleteEmployee(int id)
+        public static void DeleteEmployee(int id)
         {
             employees.Remove(id);
         }
@@ -37,6 +37,11 @@ namespace PayRoll.BLL
         public static Employee GetUnionMember(int memberId)
         {
             return unionMembers[memberId] as Employee;
+        }
+
+        public static void RemoveUnionMember(int memberId)
+        {
+            unionMembers.Remove(memberId);
         }
     }
 }

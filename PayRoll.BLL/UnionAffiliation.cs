@@ -8,21 +8,30 @@ namespace PayRoll.BLL
 {
     public class UnionAffiliation:Affiliation
     {
-        //private readonly int memberId;
-        //private readonly DateTime dues;
+        private readonly DateTime dues;
         private Hashtable charges = new Hashtable();
+        private readonly int memberId;
 
 
 
-        //public int MemberId
-        //{
-        //    get { return memberId; }
-        //}
+        public DateTime Dues
+        {
+            get { return dues; }
+        } 
+        
+        public int MemberId
+        {
+            get { return memberId; }
+        } 
 
-        //public DateTime Dues
-        //{
-        //    get { return dues; }
-        //} 
+
+
+        public UnionAffiliation(int memberId, DateTime dues)
+        {
+            this.memberId = memberId;
+            this.dues = dues;
+        }
+                
 
 
         public void AddServiceCharge(ServiceCharge sc)

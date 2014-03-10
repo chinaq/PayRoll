@@ -33,10 +33,12 @@ namespace PayRoll.BLL
             PaymentClassification pc = MakeClassification();
             PaymentSchedule ps = MakeSchedule();
             PaymentMethod pm = new HoldMethod();
+            Affiliation af = new NoAffiliation();
 
             emp.Classification = pc;
             emp.Schedule = ps;
             emp.Method = pm;
+            emp.Affiliation = af;
 
             PayrollDatabase.AddEmployee(empid, emp);
         }

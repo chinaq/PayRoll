@@ -15,6 +15,8 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 15;
             int memberId = 86;
+            DateTime unionDues = new DateTime(2014, 6, 7);
+
             double chargeAmount = 12;
             DateTime chargeDate = new DateTime(2014,6,7);
 
@@ -25,7 +27,7 @@ namespace PayRoll.UnitTest.BLL
             Assert.IsNotNull(emp);
             
             //设置并保存公会会员
-            Affiliation unionAffiliation = new UnionAffiliation();
+            Affiliation unionAffiliation = new UnionAffiliation(memberId, unionDues);
             emp.Affiliation = unionAffiliation;
             PayrollDatabase.AddUnionMember(memberId, emp);
 

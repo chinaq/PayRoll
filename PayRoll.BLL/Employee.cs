@@ -66,5 +66,23 @@ namespace PayRoll.BLL
             this.name = name;
             this.address = address;
         }
+
+
+
+        public bool IsPayDate(DateTime payDay)
+        {
+            return schedule.IsPayDate(payDay);
+        }
+
+        public void PayDay(PayCheck payCheck)
+        {
+            double grossPay  = classification.Calculate(payCheck);
+            double deductions = affiliation.CalulateDeduction(payCheck);
+            double netPay = grossPay - deductions;
+            payCheck.GrossPay = grossPay;
+            payCheck.Deductions = deductions;
+            payCheck.NetPay = netPay;
+            method.Pay(payCheck);
+        }
     }
 }

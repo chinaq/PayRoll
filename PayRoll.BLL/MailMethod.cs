@@ -21,5 +21,14 @@ namespace PayRoll.BLL
             this.address = address;
         }
 
+
+        #region PaymentMethod 成员
+
+        public void Pay(PayCheck payCheck)
+        {
+            payCheck.SetField("Disposition", "Mail");
+        }
+
+        #endregion
     }
 }

@@ -7,5 +7,6 @@ namespace PayRoll.BLL
 {
     public interface PaymentClassification
     {
+        double Calculate(PayCheck payCheck);
     }
 }

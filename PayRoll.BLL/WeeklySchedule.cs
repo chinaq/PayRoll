@@ -7,5 +7,15 @@ namespace PayRoll.BLL
 {
     public class WeeklySchedule : PaymentSchedule
     {
+        private bool IsFriday(DateTime date)
+        {
+            return date.DayOfWeek == DayOfWeek.Friday;
+        }
+
+        public bool IsPayDate(DateTime payDay)
+        {
+            return IsFriday(payDay);
+        }
+
     }
 }

@@ -44,5 +44,14 @@ namespace PayRoll.BLL
             return charges[date] as ServiceCharge;
         }
 
+
+        #region Affiliation 成员
+
+        public double CalulateDeduction(PayCheck payCheck)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

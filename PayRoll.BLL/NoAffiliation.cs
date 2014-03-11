@@ -7,5 +7,9 @@ namespace PayRoll.BLL
 {
     public class NoAffiliation:Affiliation
     {
+        public double CalulateDeduction(PayCheck payCheck)
+        {
+            return 0;
+        }
     }
 }

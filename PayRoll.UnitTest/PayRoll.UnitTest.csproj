@@ -58,6 +58,7 @@
     <Compile Include="BLL\ChangeSalariedTransactionTest.cs" />
     <Compile Include="BLL\ChangeUnaffiliationTransactionTest.cs" />
     <Compile Include="BLL\DeleteEmployeeTest.cs" />
+    <Compile Include="BLL\PayDayTransactionTest.cs" />
     <Compile Include="BLL\SalesReceiptTranscationTest.cs" />
     <Compile Include="BLL\ServiceChargeTransactionTest.cs" />
     <Compile Include="BLL\TimeCardTransactionTest.cs" />

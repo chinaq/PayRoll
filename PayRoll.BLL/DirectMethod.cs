@@ -30,5 +30,14 @@ namespace PayRoll.BLL
             this.account = account;
         }
 
+
+        #region PaymentMethod 成员
+
+        public void Pay(PayCheck payCheck)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

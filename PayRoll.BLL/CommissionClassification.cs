@@ -38,6 +38,15 @@ namespace PayRoll.BLL
         {
             return salesReceipts[date] as SalesReceipt;
         }
-    
+
+
+        #region PaymentClassification 成员
+
+        public double Calculate(PayCheck payCheck)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

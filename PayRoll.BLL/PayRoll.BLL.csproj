@@ -69,6 +69,8 @@
     <Compile Include="MailMethod.cs" />
     <Compile Include="MonthlySchedule.cs" />
     <Compile Include="NoAffiliation.cs" />
+    <Compile Include="PayCheck.cs" />
+    <Compile Include="PayDayTransaction.cs" />
     <Compile Include="PaymentClassification.cs" />
     <Compile Include="PaymentMethod.cs" />
     <Compile Include="PaymentSchedule.cs" />

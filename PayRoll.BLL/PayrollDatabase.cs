@@ -43,5 +43,10 @@ namespace PayRoll.BLL
         {
             unionMembers.Remove(memberId);
         }
+
+        public  static ArrayList GetEmployeeIds()
+        {
+            return new ArrayList(employees.Keys);
+        }
     }
 }

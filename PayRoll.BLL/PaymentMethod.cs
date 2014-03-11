@@ -7,5 +7,6 @@ namespace PayRoll.BLL
 {
     public interface PaymentMethod
     {
+        void Pay(PayCheck payCheck);
     }
 }

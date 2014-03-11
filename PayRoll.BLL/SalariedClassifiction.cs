@@ -19,6 +19,10 @@ namespace PayRoll.BLL
             this.salary = salary;
         }
 
+        public double Calculate(PayCheck payCheck)
+        {
+            return salary;
+        }
 
     }
 }

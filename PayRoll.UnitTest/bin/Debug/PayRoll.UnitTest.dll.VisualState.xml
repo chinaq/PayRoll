@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
-  <TopNode>[0-1034]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</TopNode>
-  <SelectedNode>[0-1034]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</SelectedNode>
+  <TopNode>[0-1037]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</TopNode>
+  <SelectedNode>[0-1037]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1034]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" Expanded="true" />
-    <Node UniqueName="[0-1035]PayRoll" Expanded="true" />
-    <Node UniqueName="[0-1036]PayRoll.UnitTest" Expanded="true" />
-    <Node UniqueName="[0-1037]PayRoll.UnitTest.BLL" Expanded="true" />
-    <Node UniqueName="[0-1022]PayRoll.UnitTest.BLL.ChangeCommissionedTransactionTest" Expanded="true" />
-    <Node UniqueName="[0-1018]PayRoll.UnitTest.BLL.ChangeHourlyTransactionTest" Expanded="true" />
-    <Node UniqueName="[0-1024]PayRoll.UnitTest.BLL.ChangeMailTransactionTest" Expanded="true" />
+    <Node UniqueName="[0-1037]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" Expanded="true" />
+    <Node UniqueName="[0-1038]PayRoll" Expanded="true" />
+    <Node UniqueName="[0-1039]PayRoll.UnitTest" Expanded="true" />
+    <Node UniqueName="[0-1040]PayRoll.UnitTest.BLL" Expanded="true" />
+    <Node UniqueName="[0-1034]PayRoll.UnitTest.BLL.PayDayTransactionTest" Expanded="true" />
   </Nodes>
 </VisualState>

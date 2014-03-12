@@ -12,6 +12,7 @@ namespace PayRoll.BLL
         private Hashtable timeCards = new Hashtable();
 
 
+
         public double HourlyRate
         {
             get { return hourlyRate; }
@@ -21,8 +22,7 @@ namespace PayRoll.BLL
         {
             this.hourlyRate = hourlyRate;
         }
-
-
+        
         public void AddTimeCard(TimeCard tc)
         {
             timeCards[tc.Date] = tc;
@@ -33,13 +33,34 @@ namespace PayRoll.BLL
             return timeCards[date] as TimeCard;
         }
 
-        #region PaymentClassification 成员
-
         public double Calculate(PayCheck payCheck)
         {
-            throw new NotImplementedException();
+            double totalPay = 0;
+            foreach (TimeCard timeCard in timeCards.Values)
+            {
+                if (IsInPayPeriod(timeCard, payCheck.PayDate))
+                {
+                    totalPay += CalulatePayForTimeCard(timeCard);
+                }
+            }
+            return totalPay;
         }
 
-        #endregion
+        
+        
+        private bool IsInPayPeriod(TimeCard timeCard, DateTime payPeriod)
+        {
+            DateTime payPeriodEndDate = payPeriod;
+            DateTime payPeriodStartDate = payPeriod.AddDays(-5);
+            return timeCard.Date <= payPeriodEndDate && timeCard.Date >= payPeriodStartDate;
+        }
+        
+        private double CalulatePayForTimeCard(TimeCard timeCard)
+        {
+            double overTimeHours = Math.Max(0.0, timeCard.Hours - 8);
+            double normalTimeHours = timeCard.Hours - overTimeHours;
+            return (overTimeHours * 1.5 + normalTimeHours) * hourlyRate;
+        }
+
     }
 }

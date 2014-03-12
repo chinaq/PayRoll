@@ -40,13 +40,25 @@ namespace PayRoll.BLL
         }
 
 
-        #region PaymentClassification 成员
-
         public double Calculate(PayCheck payCheck)
         {
-            throw new NotImplementedException();
+            double salesTotal = 0;
+            foreach (SalesReceipt salesReceipt in salesReceipts.Values)
+            {
+                if (IsInPayPeriod(salesReceipt, payCheck.PayDate))
+                {
+                    salesTotal += salesReceipt.Amount;
+                }
+            }
+            return baseRate + (salesTotal * commissionRate * 0.01);
         }
 
-        #endregion
+
+        private bool IsInPayPeriod(SalesReceipt salesReceipt, DateTime payPeriod)
+        {
+            DateTime payPeriodEndDate = payPeriod;
+            DateTime payPeriodStartDate = payPeriod.AddDays(-13);
+            return salesReceipt.Date <= payPeriodEndDate && salesReceipt.Date >= payPeriodStartDate;
+        }
     }
 }

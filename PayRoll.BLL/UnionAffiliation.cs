@@ -49,7 +49,7 @@ namespace PayRoll.BLL
 
         public double CalulateDeduction(PayCheck payCheck)
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         #endregion

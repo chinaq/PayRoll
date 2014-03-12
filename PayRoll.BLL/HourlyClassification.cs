@@ -51,7 +51,7 @@ namespace PayRoll.BLL
         private bool IsInPayPeriod(TimeCard timeCard, DateTime payPeriod)
         {
             DateTime payPeriodEndDate = payPeriod;
-            DateTime payPeriodStartDate = payPeriod.AddDays(-5);
+            DateTime payPeriodStartDate = payPeriod.AddDays(-6);
             return timeCard.Date <= payPeriodEndDate && timeCard.Date >= payPeriodStartDate;
         }
         

@@ -47,6 +47,7 @@
     <Compile Include="BLL\AddCommissionedEmployeeTest.cs" />
     <Compile Include="BLL\AddHourlyEmployeeTest.cs" />
     <Compile Include="BLL\AddSalariedEmployeeTest.cs" />
+    <Compile Include="BLL\BiWeeklyScheduleTest.cs" />
     <Compile Include="BLL\ChangeAddressTransactionTest.cs" />
     <Compile Include="BLL\ChangeCommissionedTransactionTest.cs" />
     <Compile Include="BLL\ChangeDirectTransactionTest.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="BLL\SalesReceiptTranscationTest.cs" />
     <Compile Include="BLL\ServiceChargeTransactionTest.cs" />
     <Compile Include="BLL\TimeCardTransactionTest.cs" />
+    <Compile Include="Helper\NUnitHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

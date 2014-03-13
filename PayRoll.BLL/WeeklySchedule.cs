@@ -17,5 +17,11 @@ namespace PayRoll.BLL
             return IsFriday(payDay);
         }
 
+
+        public DateTime GetStartDay(DateTime endDay)
+        {
+            return endDay.AddDays(-6);
+        }
+
     }
 }

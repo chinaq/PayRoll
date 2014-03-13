@@ -61,6 +61,7 @@
     <Compile Include="ChangeSalariedTransaction.cs" />
     <Compile Include="ChangeUnaffiliatedTransaction.cs" />
     <Compile Include="CommissionClassification.cs" />
+    <Compile Include="DateUtil.cs" />
     <Compile Include="DeleteEmployeeTransaction.cs" />
     <Compile Include="DirectMethod.cs" />
     <Compile Include="Employee.cs" />
@@ -86,6 +87,10 @@
     <Compile Include="Transaction.cs" />
     <Compile Include="UnionAffiliation.cs" />
     <Compile Include="WeeklySchedule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CdDateUtil.cd" />
+    <None Include="CdPaymentClassification.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

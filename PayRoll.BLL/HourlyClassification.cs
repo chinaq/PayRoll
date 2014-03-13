@@ -18,6 +18,17 @@ namespace PayRoll.BLL
             get { return hourlyRate; }
         }
 
+        public DateUtil DateUtil
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public HourlyClassification(double hourlyRate)
         {
             this.hourlyRate = hourlyRate;
@@ -38,7 +49,7 @@ namespace PayRoll.BLL
             double totalPay = 0;
             foreach (TimeCard timeCard in timeCards.Values)
             {
-                if (IsInPayPeriod(timeCard, payCheck.PayDate))
+                if (DateUtil.IsInPayPeriod(payCheck.StartDay, payCheck.PayDay, timeCard.Date))
                 {
                     totalPay += CalulatePayForTimeCard(timeCard);
                 }
@@ -46,15 +57,8 @@ namespace PayRoll.BLL
             return totalPay;
         }
 
-        
-        
-        private bool IsInPayPeriod(TimeCard timeCard, DateTime payPeriod)
-        {
-            DateTime payPeriodEndDate = payPeriod;
-            DateTime payPeriodStartDate = payPeriod.AddDays(-6);
-            return timeCard.Date <= payPeriodEndDate && timeCard.Date >= payPeriodStartDate;
-        }
-        
+
+                
         private double CalulatePayForTimeCard(TimeCard timeCard)
         {
             double overTimeHours = Math.Max(0.0, timeCard.Hours - 8);

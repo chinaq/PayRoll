@@ -34,7 +34,8 @@ namespace PayRoll.BLL
                 emp = PayrollDatabase.GetEmployee(empId);
                 if (emp.IsPayDate(payDay))
                 {
-                    payCheck = new PayCheck(payDay);
+                    DateTime startDay = emp.GetStartDay(payDay);
+                    payCheck = new PayCheck(startDay, payDay);
                     payChecks[empId] = payCheck;
                     emp.PayDay(payCheck);
                 }

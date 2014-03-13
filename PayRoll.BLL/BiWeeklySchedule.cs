@@ -22,5 +22,10 @@ namespace PayRoll.BLL
             return (dateDiff / 7) % 2 != 0;
         }
 
+        public DateTime GetStartDay(DateTime endDay)
+        {
+            return endDay.AddDays(-13);
+        }
+
     }
 }

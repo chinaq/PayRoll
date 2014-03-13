@@ -77,12 +77,17 @@ namespace PayRoll.BLL
         public void PayDay(PayCheck payCheck)
         {
             double grossPay  = classification.Calculate(payCheck);
-            double deductions = affiliation.CalulateDeduction(payCheck);
+            double deductions = affiliation.CalculateDeduction(payCheck);
             double netPay = grossPay - deductions;
             payCheck.GrossPay = grossPay;
             payCheck.Deductions = deductions;
             payCheck.NetPay = netPay;
             method.Pay(payCheck);
+        }
+
+        public DateTime GetStartDay(DateTime payDay)
+        {
+            return schedule.GetStartDay(payDay);
         }
     }
 }

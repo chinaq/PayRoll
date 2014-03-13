@@ -23,6 +23,17 @@ namespace PayRoll.BLL
             get { return commissionRate; }
         }
 
+        public DateUtil DateUtil
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public CommissionClassification(double baseRate, double commissionRate)
         {
             this.baseRate = baseRate;
@@ -45,20 +56,12 @@ namespace PayRoll.BLL
             double salesTotal = 0;
             foreach (SalesReceipt salesReceipt in salesReceipts.Values)
             {
-                if (IsInPayPeriod(salesReceipt, payCheck.PayDate))
+                if (DateUtil.IsInPayPeriod(payCheck.StartDay, payCheck.PayDay, salesReceipt.Date))
                 {
                     salesTotal += salesReceipt.Amount;
                 }
             }
             return baseRate + (salesTotal * commissionRate * 0.01);
-        }
-
-
-        private bool IsInPayPeriod(SalesReceipt salesReceipt, DateTime payPeriod)
-        {
-            DateTime payPeriodEndDate = payPeriod;
-            DateTime payPeriodStartDate = payPeriod.AddDays(-13);
-            return salesReceipt.Date <= payPeriodEndDate && salesReceipt.Date >= payPeriodStartDate;
         }
     }
 }

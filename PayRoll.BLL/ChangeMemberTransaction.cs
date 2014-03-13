@@ -5,23 +5,23 @@ using System.Text;
 
 namespace PayRoll.BLL
 {
-    public class ChangeMemberTransaction:ChangeAffiliationTransaction
+    public class ChangeMemberTransaction : ChangeAffiliationTransaction
     {
-            private readonly DateTime dues;
+        private readonly double dues;
         private readonly int memberId;
 
 
 
-            public ChangeMemberTransaction(int empId, int memberId, DateTime dues)
-                : base(empId)
+        public ChangeMemberTransaction(int empId, int memberId, double dues)
+            : base(empId)
         {
             this.dues = dues;
             this.memberId = memberId;
         }
 
-        
 
-        protected override Affiliation  Affiliation
+
+        protected override Affiliation Affiliation
         {
             get { return new UnionAffiliation(memberId, dues); }
         }

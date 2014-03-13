@@ -15,7 +15,7 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 15;
             int memberId = 86;
-            DateTime unionDues = new DateTime(2014, 6, 7);
+            double unionDues = 90.8;
 
             double chargeAmount = 12;
             DateTime chargeDate = new DateTime(2014,6,7);

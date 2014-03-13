@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="UnionAffiliation.CalculateAllServiceCharges(): 中 serviceCharges&#xD;&#xA;CommissionClassification.Calculate(): 中 salesReceipts&#xD;&#xA;HourlyClassification.Calculate(): 中 timeCards&#xD;&#xA;&#xD;&#xA;都需要检验是否在期限内，所以需要DateUtil.IsInPayPeriod进行检验">
+    <Position X="6.313" Y="0.531" Height="0.76" Width="4.315" />
+  </Comment>
+  <Class Name="PayRoll.BLL.DateUtil">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DateUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayRoll.BLL.UnionAffiliation">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAFAAAABBAAAAQQAAAAAEEAAAAAEAEAACAAA=</HashCode>
+      <FileName>UnionAffiliation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DateUtil" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayRoll.BLL.CommissionClassification">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAIAAAACAAAAgAACAAAAAAAAgAAAUIAAA=</HashCode>
+      <FileName>CommissionClassification.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DateUtil" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayRoll.BLL.HourlyClassification">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAGAASAAAAAAAAAAAACIAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>HourlyClassification.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DateUtil" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="宋体" Size="9" />
+</ClassDiagram>

@@ -32,7 +32,7 @@ namespace PayRoll.UnitTest.BLL
             Assert.AreEqual(payCheck.GrossPay, 3000, 0.01);
             Assert.AreEqual(payCheck.Deductions, 0, 0.01);
             Assert.AreEqual(payCheck.NetPay, 3000, 0.01);
-            Assert.AreEqual(payCheck.PayDate, payDay);
+            Assert.AreEqual(payCheck.PayDay, payDay);
             Assert.AreEqual(payCheck.GetField("Disposition"), "Hold");
         }
 
@@ -56,7 +56,7 @@ namespace PayRoll.UnitTest.BLL
             pt.Execute();
             PayCheck payCheck = pt.GetPayCheck(empId);
 
-            ValidatePaycheck(pt, empId, payDay, 0);
+            ValidatePaycheck(pt, empId, payDay, 0, 0);
         }
 
 
@@ -74,7 +74,7 @@ namespace PayRoll.UnitTest.BLL
             tc.Execute();
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, 30.5);
+            ValidatePaycheck(pt, empId, payDate, 30.5, 0);
         }
 
 
@@ -93,7 +93,7 @@ namespace PayRoll.UnitTest.BLL
             tc.Execute();
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, (8 + 1.5) * 15.25);
+            ValidatePaycheck(pt, empId, payDate, (8 + 1.5) * 15.25, 0);
         }
 
 
@@ -138,7 +138,7 @@ namespace PayRoll.UnitTest.BLL
             tc2.Execute();
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, 7 * 15.25);
+            ValidatePaycheck(pt, empId, payDate, 7 * 15.25, 0);
         }
 
 
@@ -160,7 +160,7 @@ namespace PayRoll.UnitTest.BLL
             tc2.Execute();
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, 2 * 15.25);
+            ValidatePaycheck(pt, empId, payDate, 2 * 15.25, 0);
         }
 
 
@@ -175,7 +175,7 @@ namespace PayRoll.UnitTest.BLL
             DateTime payDate = new DateTime(2018, 1, 5); // Payday
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, 1500.0);
+            ValidatePaycheck(pt, empId, payDate, 1500.0, 0);
         }
 
 
@@ -193,7 +193,7 @@ namespace PayRoll.UnitTest.BLL
             sr.Execute();
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, 2000.00);
+            ValidatePaycheck(pt, empId, payDate, 2000.00, 0);
         }
 
 
@@ -237,7 +237,7 @@ namespace PayRoll.UnitTest.BLL
             sr2.Execute();
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, 2350.00);
+            ValidatePaycheck(pt, empId, payDate, 2350.00, 0);
         }
 
 
@@ -259,21 +259,104 @@ namespace PayRoll.UnitTest.BLL
             sr2.Execute();
             PayDayTransaction pt = new PayDayTransaction(payDate);
             pt.Execute();
-            ValidatePaycheck(pt, empId, payDate, 2000.00);
+            ValidatePaycheck(pt, empId, payDate, 2000.00, 0);
         }
 
 
 
-        private void ValidatePaycheck(PayDayTransaction pt, int empId, DateTime payDate, double pay)
+        [Test]
+        public void ExecuteTest_SalariedUnionMemberDues()
+        {
+            int empId = 1;
+            AddSalariedEmployee t = new AddSalariedEmployee(
+                empId, "Bob", "Home", 1000.00);
+            t.Execute();
+            int memberId = 7734;
+            ChangeMemberTransaction cmt =
+                new ChangeMemberTransaction(empId, memberId, 9.42);
+            cmt.Execute();
+            DateTime payDate = new DateTime(2014, 3, 31);   //有4个周五
+            PayDayTransaction pt = new PayDayTransaction(payDate);
+            pt.Execute();
+
+            ValidatePaycheck(pt, empId, payDate, 1000.0, 9.42 * 4);
+        }
+
+
+
+        [Test]
+        public void ExecuteTest_HourlyUnionMemberServiceCharge()
+        {
+            int empId = 1;
+            AddHourlyEmployee t = new AddHourlyEmployee(
+                empId, "Bill", "Home", 15.24);
+            t.Execute();
+            int memberId = 7734;
+            ChangeMemberTransaction cmt =
+                new ChangeMemberTransaction(empId, memberId, 9.42);
+            cmt.Execute();
+            DateTime payDate = new DateTime(2001, 11, 9);
+            ServiceChargeTransaction sct =
+                new ServiceChargeTransaction(memberId, 19.42, payDate);
+            sct.Execute();
+            TimeCardTransaction tct =
+                new TimeCardTransaction(payDate, 8.0, empId);
+            tct.Execute();
+            PayDayTransaction pt = new PayDayTransaction(payDate);
+            pt.Execute();
+
+            ValidatePaycheck(pt, empId, payDate, 8 * 15.24, 9.42 + 19.42);
+        }
+
+
+
+
+        [Test]
+        public void ExecuteTest_ServiceChargesSpanningMultiplePayPeriods()
+        {
+            int empId = 1;
+            AddHourlyEmployee t = new AddHourlyEmployee(
+                empId, "Bill", "Home", 15.24);
+            t.Execute();
+            int memberId = 7734;
+            ChangeMemberTransaction cmt =
+                new ChangeMemberTransaction(empId, memberId, 9.42);
+            cmt.Execute();
+            DateTime payDate = new DateTime(2001, 11, 9);
+            DateTime earlyDate =
+                new DateTime(2001, 11, 2); // previous Friday
+            DateTime lateDate =
+                new DateTime(2001, 11, 16); // next Friday
+            ServiceChargeTransaction sct =
+                new ServiceChargeTransaction(memberId, 19.42, payDate);
+            sct.Execute();
+            ServiceChargeTransaction sctEarly =
+                new ServiceChargeTransaction(memberId, 100.00, earlyDate);
+            sctEarly.Execute();
+            ServiceChargeTransaction sctLate =
+                new ServiceChargeTransaction(memberId, 200.00, lateDate );
+            sctLate.Execute();
+            TimeCardTransaction tct =
+                new TimeCardTransaction(payDate, 8.0, empId);
+            tct.Execute();
+            PayDayTransaction pt = new PayDayTransaction(payDate);
+            pt.Execute();
+
+            ValidatePaycheck(pt, empId, payDate, 8 * 15.24, 9.42 + 19.42);
+        }
+
+
+
+        private void ValidatePaycheck(PayDayTransaction pt, int empId, DateTime payDate_Expe, double grossPay_Expe, double deductions_Expe)
         {
             PayCheck pc = pt.GetPayCheck(empId);
             Assert.IsNotNull(pc);
 
-            Assert.AreEqual(payDate, pc.PayDate);
-            Assert.AreEqual(pay, pc.GrossPay, 0.001);
+            Assert.AreEqual(payDate_Expe, pc.PayDay);
+            Assert.AreEqual(grossPay_Expe, pc.GrossPay, 0.001);
             Assert.AreEqual("Hold", pc.GetField("Disposition"));
-            Assert.AreEqual(0, pc.Deductions, 0.001);
-            Assert.AreEqual(pay, pc.NetPay, 0.001);
+            Assert.AreEqual(deductions_Expe, pc.Deductions, 0.001);
+            Assert.AreEqual(grossPay_Expe - deductions_Expe, pc.NetPay, 0.001);
         }
     }
 }

@@ -8,5 +8,7 @@ namespace PayRoll.BLL
     public interface PaymentSchedule
     {
         bool IsPayDate(DateTime payDay);
+
+        DateTime GetStartDay(DateTime endDay);
     }
 }

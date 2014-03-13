@@ -20,5 +20,14 @@ namespace PayRoll.BLL
             return (mon1 != mon2);
         }
 
+        public DateTime GetStartDay(DateTime endDay)
+        {
+            int days = 0;
+            while (endDay.AddDays(days - 1).Month == endDay.Month)
+                days--;
+
+            return endDay.AddDays(days);
+        }
+
     }
 }

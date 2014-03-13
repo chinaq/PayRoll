@@ -15,7 +15,7 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 33;
             int memberId = 987;
-            DateTime dues = new DateTime(2014, 5, 6);
+            double dues = 98.6;
 
             AddSalariedEmployee addSalEmp = new AddSalariedEmployee(empId, "Masa", "Faav Street", 5000);
             addSalEmp.Execute();

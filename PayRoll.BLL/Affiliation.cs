@@ -7,6 +7,6 @@ namespace PayRoll.BLL
 {
     public interface Affiliation
     {
-        double CalulateDeduction(PayCheck payCheck);
+        double CalculateDeduction(PayCheck payCheck);
     }
 }

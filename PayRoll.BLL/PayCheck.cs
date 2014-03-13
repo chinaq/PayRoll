@@ -8,7 +8,8 @@ namespace PayRoll.BLL
 {
     public class PayCheck
     {
-        private readonly DateTime payDate;
+        private readonly DateTime startDay;
+        private DateTime payDay;
         private double grossPay;
         private double deductions;
         private double netPay;
@@ -16,9 +17,14 @@ namespace PayRoll.BLL
 
 
 
-        public DateTime PayDate
+        public DateTime StartDay
         {
-            get { return payDate; }
+            get { return startDay; }
+        }
+
+        public DateTime PayDay
+        {
+            get { return payDay; }
         }
 
         public double GrossPay
@@ -41,9 +47,10 @@ namespace PayRoll.BLL
 
 
 
-        public PayCheck(DateTime payDate)
+        public PayCheck(DateTime startDay, DateTime payDay)
         {
-            this.payDate = payDate;
+            this.startDay = startDay;
+            this.payDay = payDay;
         }
 
 

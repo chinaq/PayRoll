@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class ChangeSalariedTransactionTest
+    public class ChangeSalariedTransactionTest : SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
@@ -16,12 +16,12 @@ namespace PayRoll.UnitTest.BLL
             int empId = 23;
             double salary = 1600;
 
-            AddEmployeeTransaction addHourlyEmp = new AddHourlyEmployee(empId, "kara", "samubola", 3000);
+            AddEmployeeTransaction addHourlyEmp = new AddHourlyEmployee(empId, "kara", "samubola", 3000, database);
             addHourlyEmp.Execute();
 
-            ChangeClassificationTranscation changeHourlyTrans = new ChangeSalariedTransaction(empId, salary);
+            ChangeClassificationTranscation changeHourlyTrans = new ChangeSalariedTransaction(empId, salary, database);
             changeHourlyTrans.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
             Assert.IsTrue(emp.Classification is SalariedClassifiction);
 

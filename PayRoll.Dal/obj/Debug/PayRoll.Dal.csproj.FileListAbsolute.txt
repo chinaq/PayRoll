@@ -1,0 +1,7 @@
+D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.Dal\bin\Debug\PayRoll.Dal.dll
+D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.Dal\bin\Debug\PayRoll.Dal.pdb
+D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.Dal\bin\Debug\PayRoll.BLL.dll
+D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.Dal\bin\Debug\PayRoll.BLL.pdb
+D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.Dal\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.Dal\obj\Debug\PayRoll.Dal.dll
+D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.Dal\obj\Debug\PayRoll.Dal.pdb

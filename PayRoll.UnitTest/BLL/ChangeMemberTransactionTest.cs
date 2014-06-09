@@ -8,7 +8,7 @@ using PayRoll.BLL;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class ChangeMemberTransactionTest
+    public class ChangeMemberTransactionTest:SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
@@ -17,12 +17,12 @@ namespace PayRoll.UnitTest.BLL
             int memberId = 987;
             double dues = 98.6;
 
-            AddSalariedEmployee addSalEmp = new AddSalariedEmployee(empId, "Masa", "Faav Street", 5000);
+            AddSalariedEmployee addSalEmp = new AddSalariedEmployee(empId, "Masa", "Faav Street", 5000, database);
             addSalEmp.Execute();
-            ChangeAffiliationTransaction changeAffTrans = new ChangeMemberTransaction(empId, memberId,dues);
+            ChangeAffiliationTransaction changeAffTrans = new ChangeMemberTransaction(empId, memberId, dues, database);
             changeAffTrans.Execute();
-            
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+
+            Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
             Assert.IsTrue(emp.Affiliation is UnionAffiliation);
 
@@ -30,7 +30,7 @@ namespace PayRoll.UnitTest.BLL
             Assert.IsNotNull(ua);
             Assert.AreEqual(ua.Dues, dues);
 
-            Employee member = PayrollDatabase.GetUnionMember(memberId);
+            Employee member = database.GetUnionMember(memberId);
             Assert.IsNotNull(member);
             Assert.AreEqual(emp, member);
         }

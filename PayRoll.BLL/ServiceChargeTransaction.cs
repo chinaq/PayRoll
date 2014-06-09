@@ -11,7 +11,7 @@ namespace PayRoll.BLL
         private readonly double amount;
         private readonly DateTime date;
 
-        public ServiceChargeTransaction(int memberId, double amount, DateTime date)
+        public ServiceChargeTransaction(int memberId, double amount, DateTime date, PayrollDatabase database): base(database)
         {
             this.memberId = memberId;
             this.amount = amount;
@@ -23,9 +23,9 @@ namespace PayRoll.BLL
 
         #region Transaction 成员
 
-        public void Execute()
+        public override void Execute()
         {
-            Employee emp = PayrollDatabase.GetUnionMember(memberId);
+            Employee emp = database.GetUnionMember(memberId);
             if (emp != null)
             {
                 UnionAffiliation unionAffiliation = emp.Affiliation as UnionAffiliation;

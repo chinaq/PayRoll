@@ -10,8 +10,8 @@ namespace PayRoll.BLL
         
         private readonly double salary;
 
-        public ChangeSalariedTransaction(int empId, double salary)
-            : base(empId)
+        public ChangeSalariedTransaction(int empId, double salary, PayrollDatabase database)
+            : base(empId, database)
         {
             this.salary = salary;
         }

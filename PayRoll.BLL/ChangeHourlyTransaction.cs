@@ -9,8 +9,8 @@ namespace PayRoll.BLL
     {
         private readonly double hourlyRate;
 
-        public ChangeHourlyTransaction(int empId, double hourlyRate)
-            : base(empId)
+        public ChangeHourlyTransaction(int empId, double hourlyRate, PayrollDatabase database)
+            : base(empId, database)
         {
             this.hourlyRate = hourlyRate;
         }

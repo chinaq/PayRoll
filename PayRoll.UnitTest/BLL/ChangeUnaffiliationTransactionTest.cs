@@ -8,7 +8,7 @@ using PayRoll.BLL;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class ChangeUnaffiliationTransactionTest
+    public class ChangeUnaffiliationTransactionTest: SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
@@ -17,27 +17,27 @@ namespace PayRoll.UnitTest.BLL
             int memberId = 98;
             double dues = 98.9;
 
-            PayrollDatabase.DeleteEmployee(empId);
-            PayrollDatabase.RemoveUnionMember(memberId);
+            database.DeleteEmployee(empId);
+            database.RemoveUnionMember(memberId);
 
-            AddSalariedEmployee addSalEmp = new AddSalariedEmployee(empId, "Masa", "Faav Street", 5000);
+            AddSalariedEmployee addSalEmp = new AddSalariedEmployee(empId, "Masa", "Faav Street", 5000, database);
             addSalEmp.Execute();
-            ChangeAffiliationTransaction changeMemberTrans = new ChangeMemberTransaction(empId, memberId, dues);
+            ChangeAffiliationTransaction changeMemberTrans = new ChangeMemberTransaction(empId, memberId, dues, database);
             changeMemberTrans.Execute();
-            Employee empAff = PayrollDatabase.GetEmployee(empId);
+            Employee empAff = database.GetEmployee(empId);
             Assert.IsNotNull(empAff);
             Assert.IsTrue(empAff.Affiliation is UnionAffiliation);
 
 
-            ChangeAffiliationTransaction changeAffTrans = new ChangeUnaffiliatedTransaction(empId);
+            ChangeAffiliationTransaction changeAffTrans = new ChangeUnaffiliatedTransaction(empId, database);
             changeAffTrans.Execute();
-            Employee empNoAff = PayrollDatabase.GetEmployee(empId);
+            Employee empNoAff = database.GetEmployee(empId);
             Assert.IsNotNull(empNoAff);
             Assert.IsTrue(empNoAff.Affiliation is NoAffiliation);
             NoAffiliation ua = empNoAff.Affiliation as NoAffiliation;
             Assert.IsNotNull(ua);
 
-            Employee member = PayrollDatabase.GetUnionMember(memberId);
+            Employee member = database.GetUnionMember(memberId);
             Assert.IsNull(member);
 
         }

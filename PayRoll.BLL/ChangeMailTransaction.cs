@@ -11,7 +11,7 @@ namespace PayRoll.BLL
 
 
 
-        public ChangeMailTransaction(int empId, string address):base(empId)
+        public ChangeMailTransaction(int empId, string address, PayrollDatabase database):base(empId, database)
         {
             this.address = address;
         }

@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class ChangeNameTransactionTest
+    public class ChangeNameTransactionTest:SetUpInmemoryDb 
     {
         [Test]
         public void ExecuteTest()
@@ -18,15 +18,15 @@ namespace PayRoll.UnitTest.BLL
             string newName = "Busu";
 
             //添加雇员
-            AddHourlyEmployee addHourlyEmp = new AddHourlyEmployee(empId, "Mana", "duva", 12.3);
+            AddHourlyEmployee addHourlyEmp = new AddHourlyEmployee(empId, "Mana", "duva", 12.3, database);
             addHourlyEmp.Execute();
 
             //改名字
-            ChangeEmployeeTransaction changeNameTrans = new ChangeNameTransaction(empId, newName);
+            ChangeEmployeeTransaction changeNameTrans = new ChangeNameTransaction(empId, newName, database);
             changeNameTrans.Execute();
 
             //获取雇员
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
 
             //检查名字

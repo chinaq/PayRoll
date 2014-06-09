@@ -12,8 +12,8 @@ namespace PayRoll.BLL
 
 
 
-        public ChangeMemberTransaction(int empId, int memberId, double dues)
-            : base(empId)
+        public ChangeMemberTransaction(int empId, int memberId, double dues, PayrollDatabase database)
+            : base(empId, database)
         {
             this.dues = dues;
             this.memberId = memberId;
@@ -29,7 +29,7 @@ namespace PayRoll.BLL
 
         protected override void RecordMembership(Employee emp)
         {
-            PayrollDatabase.AddUnionMember(memberId, emp);
+            database.AddUnionMember(memberId, emp);            
         }
     }
 }

@@ -11,10 +11,11 @@ namespace PayRoll.BLL
 
 
 
-        public ChangeEmployeeTransaction(int empId)
+        public ChangeEmployeeTransaction(int empId, PayrollDatabase database):base(database)
         {
             this.empId = empId;
         }
+
 
 
 
@@ -23,9 +24,9 @@ namespace PayRoll.BLL
 
         #region Transaction 成员
 
-        public void Execute()
+        public override void Execute()
         {
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             if (emp != null)
             {
                 Change(emp);

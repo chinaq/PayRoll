@@ -9,18 +9,18 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class TimeCardTransactionTest
+    public class TimeCardTransactionTest : SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
         {
             int empId = 5;
-            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25, database);
             t.Execute();
-            TimeCardTransaction tct = new TimeCardTransaction(new DateTime(2005, 7, 31), 8.0, empId);
+            TimeCardTransaction tct = new TimeCardTransaction(new DateTime(2005, 7, 31), 8.0, empId, database);
             tct.Execute();
 
-            Employee e = PayrollDatabase.GetEmployee(empId);
+            Employee e = database.GetEmployee(empId);
             Assert.IsNotNull(e);
 
             PaymentClassification pc = e.Classification;

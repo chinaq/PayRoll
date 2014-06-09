@@ -5,8 +5,15 @@ using System.Text;
 
 namespace PayRoll.BLL
 {
-    public interface Transaction
+    public abstract class Transaction
     {
-        void Execute();
+        protected readonly PayrollDatabase database;
+
+        public Transaction(PayrollDatabase database)
+        {
+            this.database = database;
+        }
+
+        public abstract void Execute();
     }
 }

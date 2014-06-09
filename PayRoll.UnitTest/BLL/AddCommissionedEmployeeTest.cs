@@ -8,14 +8,15 @@ using PayRoll.BLL;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class AddCommissionedEmployeeTest
+    public class AddCommissionedEmployeeTest:SetUpInmemoryDb
     {
+
         [Test]
         public void ExecuteTest()
         {
-            AddEmployeeTransaction addEmp = new AddCommissionedEmployee(3, "Dalai", "Bree Street", 0.6, 0.7);
+            AddEmployeeTransaction addEmp = new AddCommissionedEmployee(3, "Dalai", "Bree Street", 0.6, 0.7, database);
             addEmp.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(3);
+            Employee emp = database.GetEmployee(3);
             Assert.IsNotNull(emp);
 
             PaymentClassification classification = emp.Classification;

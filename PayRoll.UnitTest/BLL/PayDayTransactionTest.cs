@@ -8,7 +8,7 @@ using PayRoll.BLL;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class PayDayTransactionTest
+    public class PayDayTransactionTest:SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest_PaySingleSalariedEmployee()
@@ -16,15 +16,15 @@ namespace PayRoll.UnitTest.BLL
             int empId =67;
             int memberId = 77;
             DateTime payDay = new DateTime(2014, 12, 31);
-            PayrollDatabase.DeleteEmployee(empId);
-            PayrollDatabase.RemoveUnionMember(memberId);
+            database.DeleteEmployee(empId);
+            database.RemoveUnionMember(memberId);
 
-            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "lasa", "fala Street", 3000);
+            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "lasa", "fala Street", 3000, database);
             addSalEmp.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsTrue(emp.Method is HoldMethod);
 
-            PayDayTransaction pt = new PayDayTransaction(payDay);
+            PayDayTransaction pt = new PayDayTransaction(payDay, database);
             pt.Execute();
             PayCheck payCheck = pt.GetPayCheck(empId);
 
@@ -44,15 +44,15 @@ namespace PayRoll.UnitTest.BLL
             int empId = 89;
             int memberId = 907;
             DateTime payDay = new DateTime(2001, 11, 9);
-            PayrollDatabase.DeleteEmployee(empId);
-            PayrollDatabase.RemoveUnionMember(memberId);
+            database.DeleteEmployee(empId);
+            database.RemoveUnionMember(memberId);
 
-            AddEmployeeTransaction addHourlyEmp = new AddHourlyEmployee(empId, "lasa", "fala Street", 30);
+            AddEmployeeTransaction addHourlyEmp = new AddHourlyEmployee(empId, "lasa", "fala Street", 30, database);
             addHourlyEmp.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsTrue(emp.Method is HoldMethod);
 
-            PayDayTransaction pt = new PayDayTransaction(payDay);
+            PayDayTransaction pt = new PayDayTransaction(payDay, database);
             pt.Execute();
             PayCheck payCheck = pt.GetPayCheck(empId);
 
@@ -64,15 +64,15 @@ namespace PayRoll.UnitTest.BLL
         public void ExecuteTest_PayHourlyEmployeeOneTimeCard()
         {
             int empId = 2;
-            PayrollDatabase.DeleteEmployee(empId);
+            database.DeleteEmployee(empId);
 
-            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25, database);
             t.Execute();
             DateTime payDate = new DateTime(2001, 11, 9);   //Friday
 
-            TimeCardTransaction tc = new TimeCardTransaction(payDate, 2.0, empId);
+            TimeCardTransaction tc = new TimeCardTransaction(payDate, 2.0, empId, database);
             tc.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, 30.5, 0);
         }
@@ -83,15 +83,15 @@ namespace PayRoll.UnitTest.BLL
         public void ExecuteTest_PayHourlyEmployeeOvertimeOneTimeCard()
         {            
             int empId = 2;
-            PayrollDatabase.DeleteEmployee(empId);
+            database.DeleteEmployee(empId);
 
-            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25, database);
             t.Execute();
             DateTime payDate = new DateTime(2001, 11, 9);   //Friday
 
-            TimeCardTransaction tc = new TimeCardTransaction(payDate, 9.0, empId);
+            TimeCardTransaction tc = new TimeCardTransaction(payDate, 9.0, empId, database);
             tc.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, (8 + 1.5) * 15.25, 0);
         }
@@ -102,15 +102,15 @@ namespace PayRoll.UnitTest.BLL
         public void ExecuteTest_PayHourlyEmployeeOnWrongDate()
         {
             int empId = 2;
-            PayrollDatabase.DeleteEmployee(empId);
+            database.DeleteEmployee(empId);
 
-            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25, database);
             t.Execute();
             DateTime payDate = new DateTime(2001, 11, 7);   //Wednesday
 
-            TimeCardTransaction tc = new TimeCardTransaction(payDate, 9.0, empId);
+            TimeCardTransaction tc = new TimeCardTransaction(payDate, 9.0, empId, database);
             tc.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             PayCheck pc = pt.GetPayCheck(empId);
 
@@ -123,20 +123,20 @@ namespace PayRoll.UnitTest.BLL
         public void ExecuteTest_PaySingleHourlyEmployeeTwoTimeCards()
         {
             int empId = 2;
-            PayrollDatabase.DeleteEmployee(empId);
+            database.DeleteEmployee(empId);
 
             AddHourlyEmployee t = new AddHourlyEmployee(
-                empId, "Bill", "Home", 15.25);
+                empId, "Bill", "Home", 15.25, database);
             t.Execute();
             DateTime payDate = new DateTime(2001, 11, 9); // Friday
 
             TimeCardTransaction tc =
-                new TimeCardTransaction(payDate, 2.0, empId);
+                new TimeCardTransaction(payDate, 2.0, empId, database);
             tc.Execute();
             TimeCardTransaction tc2 =
-                new TimeCardTransaction(payDate.AddDays(-1), 5.0, empId);
+                new TimeCardTransaction(payDate.AddDays(-1), 5.0, empId, database);
             tc2.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, 7 * 15.25, 0);
         }
@@ -147,18 +147,18 @@ namespace PayRoll.UnitTest.BLL
         public void ExecuteTest_PaySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods()
         {
             int empId = 2;
-            PayrollDatabase.DeleteEmployee(empId);
+            database.DeleteEmployee(empId);
 
-            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            AddHourlyEmployee t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25, database);
             t.Execute();
             DateTime payDate = new DateTime(2001, 11, 9); // Friday
             DateTime dateInPreviousPayPeriod = new DateTime(2001, 10, 30);
 
-            TimeCardTransaction tc = new TimeCardTransaction(payDate, 2.0, empId);
+            TimeCardTransaction tc = new TimeCardTransaction(payDate, 2.0, empId, database);
             tc.Execute();
-            TimeCardTransaction tc2 = new TimeCardTransaction(dateInPreviousPayPeriod, 5.0, empId);
+            TimeCardTransaction tc2 = new TimeCardTransaction(dateInPreviousPayPeriod, 5.0, empId, database);
             tc2.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, 2 * 15.25, 0);
         }
@@ -169,11 +169,11 @@ namespace PayRoll.UnitTest.BLL
         public void ExecuteTest_PaySingleCommissionedEmployeeNoReceipts()
         {
             int empId = 2;
-            PayrollDatabase.DeleteEmployee(empId);
-            AddCommissionedEmployee t = new AddCommissionedEmployee(empId, "Bill", "Home", 1500, 10);
+            database.DeleteEmployee(empId);
+            AddCommissionedEmployee t = new AddCommissionedEmployee(empId, "Bill", "Home", 1500, 10, database);
             t.Execute();
             DateTime payDate = new DateTime(2018, 1, 5); // Payday
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, 1500.0, 0);
         }
@@ -184,14 +184,14 @@ namespace PayRoll.UnitTest.BLL
         public void ExecuteTest_PaySingleCommissionedEmployeeOneReceipt()
         {
             int empId = 2;
-            PayrollDatabase.DeleteEmployee(empId);
-            AddCommissionedEmployee t = new AddCommissionedEmployee(empId, "Bill", "Home", 1500, 10);
+            database.DeleteEmployee(empId);
+            AddCommissionedEmployee t = new AddCommissionedEmployee(empId, "Bill", "Home", 1500, 10, database);
             t.Execute();
             DateTime payDate = new DateTime(2018, 1, 5); // Payday
 
-            SalesReceiptTransaction sr = new SalesReceiptTransaction(payDate, 5000.00, empId);
+            SalesReceiptTransaction sr = new SalesReceiptTransaction(payDate, 5000.00, empId, database);
             sr.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, 2000.00, 0);
         }
@@ -203,14 +203,14 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 2;
             AddCommissionedEmployee t = new AddCommissionedEmployee(
-                empId, "Bill", "Home", 1500, 10);
+                empId, "Bill", "Home", 1500, 10, database);
             t.Execute();
             DateTime payDate = new DateTime(2018, 1, 12); // wrong friday
 
             SalesReceiptTransaction sr =
-                new SalesReceiptTransaction(payDate, 5000.00, empId);
+                new SalesReceiptTransaction(payDate, 5000.00, empId, database);
             sr.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
 
             PayCheck pc = pt.GetPayCheck(empId);
@@ -225,17 +225,17 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 2;
             AddCommissionedEmployee t = new AddCommissionedEmployee(
-                empId, "Bill", "Home", 1500, 10);
+                empId, "Bill", "Home", 1500, 10, database);
             t.Execute();
             DateTime payDate = new DateTime(2018, 1, 5); // Payday
 
             SalesReceiptTransaction sr =
-                new SalesReceiptTransaction(payDate, 5000.00, empId);
+                new SalesReceiptTransaction(payDate, 5000.00, empId, database);
             sr.Execute();
             SalesReceiptTransaction sr2 = new SalesReceiptTransaction(
-                payDate.AddDays(-1), 3500.00, empId);
+                payDate.AddDays(-1), 3500.00, empId, database);
             sr2.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, 2350.00, 0);
         }
@@ -247,17 +247,17 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 2;
             AddCommissionedEmployee t = new AddCommissionedEmployee(
-                empId, "Bill", "Home", 1500, 10);
+                empId, "Bill", "Home", 1500, 10, database);
             t.Execute();
             DateTime payDate = new DateTime(2018, 1, 5); // Payday
 
             SalesReceiptTransaction sr =
-                new SalesReceiptTransaction(payDate, 5000.00, empId);
+                new SalesReceiptTransaction(payDate, 5000.00, empId, database);
             sr.Execute();
             SalesReceiptTransaction sr2 = new SalesReceiptTransaction(
-                payDate.AddDays(-15), 3500.00, empId);
+                payDate.AddDays(-15), 3500.00, empId, database);
             sr2.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
             ValidatePaycheck(pt, empId, payDate, 2000.00, 0);
         }
@@ -269,14 +269,14 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 1;
             AddSalariedEmployee t = new AddSalariedEmployee(
-                empId, "Bob", "Home", 1000.00);
+                empId, "Bob", "Home", 1000.00, database);
             t.Execute();
             int memberId = 7734;
             ChangeMemberTransaction cmt =
-                new ChangeMemberTransaction(empId, memberId, 9.42);
+                new ChangeMemberTransaction(empId, memberId, 9.42, database);
             cmt.Execute();
             DateTime payDate = new DateTime(2014, 3, 31);   //有4个周五
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
 
             ValidatePaycheck(pt, empId, payDate, 1000.0, 9.42 * 4);
@@ -289,20 +289,20 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 1;
             AddHourlyEmployee t = new AddHourlyEmployee(
-                empId, "Bill", "Home", 15.24);
+                empId, "Bill", "Home", 15.24, database);
             t.Execute();
             int memberId = 7734;
             ChangeMemberTransaction cmt =
-                new ChangeMemberTransaction(empId, memberId, 9.42);
+                new ChangeMemberTransaction(empId, memberId, 9.42, database);
             cmt.Execute();
             DateTime payDate = new DateTime(2001, 11, 9);
             ServiceChargeTransaction sct =
-                new ServiceChargeTransaction(memberId, 19.42, payDate);
+                new ServiceChargeTransaction(memberId, 19.42, payDate, database);
             sct.Execute();
             TimeCardTransaction tct =
-                new TimeCardTransaction(payDate, 8.0, empId);
+                new TimeCardTransaction(payDate, 8.0, empId, database);
             tct.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
 
             ValidatePaycheck(pt, empId, payDate, 8 * 15.24, 9.42 + 19.42);
@@ -316,11 +316,11 @@ namespace PayRoll.UnitTest.BLL
         {
             int empId = 1;
             AddHourlyEmployee t = new AddHourlyEmployee(
-                empId, "Bill", "Home", 15.24);
+                empId, "Bill", "Home", 15.24, database);
             t.Execute();
             int memberId = 7734;
             ChangeMemberTransaction cmt =
-                new ChangeMemberTransaction(empId, memberId, 9.42);
+                new ChangeMemberTransaction(empId, memberId, 9.42, database);
             cmt.Execute();
             DateTime payDate = new DateTime(2001, 11, 9);
             DateTime earlyDate =
@@ -328,18 +328,18 @@ namespace PayRoll.UnitTest.BLL
             DateTime lateDate =
                 new DateTime(2001, 11, 16); // next Friday
             ServiceChargeTransaction sct =
-                new ServiceChargeTransaction(memberId, 19.42, payDate);
+                new ServiceChargeTransaction(memberId, 19.42, payDate, database);
             sct.Execute();
             ServiceChargeTransaction sctEarly =
-                new ServiceChargeTransaction(memberId, 100.00, earlyDate);
+                new ServiceChargeTransaction(memberId, 100.00, earlyDate, database);
             sctEarly.Execute();
             ServiceChargeTransaction sctLate =
-                new ServiceChargeTransaction(memberId, 200.00, lateDate );
+                new ServiceChargeTransaction(memberId, 200.00, lateDate, database);
             sctLate.Execute();
             TimeCardTransaction tct =
-                new TimeCardTransaction(payDate, 8.0, empId);
+                new TimeCardTransaction(payDate, 8.0, empId, database);
             tct.Execute();
-            PayDayTransaction pt = new PayDayTransaction(payDate);
+            PayDayTransaction pt = new PayDayTransaction(payDate, database);
             pt.Execute();
 
             ValidatePaycheck(pt, empId, payDate, 8 * 15.24, 9.42 + 19.42);

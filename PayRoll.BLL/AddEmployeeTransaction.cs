@@ -11,7 +11,7 @@ namespace PayRoll.BLL
         private readonly string address;
         private readonly string name;
 
-        public AddEmployeeTransaction(int empid, string name, string address)
+        public AddEmployeeTransaction(int empid, string name, string address, PayrollDatabase database):base(database)
         {
             this.empid = empid;
             this.name = name;
@@ -27,7 +27,7 @@ namespace PayRoll.BLL
 
         #region Transaction 成员
 
-        public void Execute()
+        public override void Execute()
         {
             Employee emp = new Employee(empid, name, address);
             PaymentClassification pc = MakeClassification();
@@ -40,7 +40,7 @@ namespace PayRoll.BLL
             emp.Method = pm;
             emp.Affiliation = af;
 
-            PayrollDatabase.AddEmployee(empid, emp);
+            database.AddEmployee(emp);
         }
 
         #endregion

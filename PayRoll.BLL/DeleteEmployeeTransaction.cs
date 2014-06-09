@@ -9,14 +9,14 @@ namespace PayRoll.BLL
     {
         private readonly int id;
 
-        public DeleteEmployeeTransaction(int id)
+        public DeleteEmployeeTransaction(int id, PayrollDatabase database): base(database)
         {
             this.id = id;
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            PayrollDatabase.DeleteEmployee(id);
+            database.DeleteEmployee(id);
         }
     }
 }

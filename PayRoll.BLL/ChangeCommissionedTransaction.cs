@@ -10,8 +10,8 @@ namespace PayRoll.BLL
         private double baseRate;
         private double commissionRate;
 
-        public ChangeCommissionedTransaction(int empId, double baseRate, double commissionRate)
-            : base(empId)
+        public ChangeCommissionedTransaction(int empId, double baseRate, double commissionRate, PayrollDatabase database)
+            : base(empId, database)
         {
             this.baseRate = baseRate;
             this.commissionRate = commissionRate;

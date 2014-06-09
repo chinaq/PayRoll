@@ -6,13 +6,13 @@ using System.Collections;
 
 namespace PayRoll.BLL
 {
-    public class PayDayTransaction
+    public class PayDayTransaction:Transaction
     {
         private ArrayList empIds;
         private DateTime payDay;
         private Hashtable payChecks = new Hashtable();
 
-        public PayDayTransaction(DateTime payDay)
+        public PayDayTransaction(DateTime payDay, PayrollDatabase database):base(database)
         {
             this.payDay = payDay;
         }
@@ -21,17 +21,17 @@ namespace PayRoll.BLL
 
         private ArrayList GetEmployeeIds()
         {
-            return PayrollDatabase.GetEmployeeIds();
+            return database.GetAllEmployeeIds();
         }
 
-        public void Execute()
+        public override void Execute()
         {
             empIds = GetEmployeeIds();
             Employee emp;
             PayCheck payCheck;
             foreach(int empId in empIds)
             {
-                emp = PayrollDatabase.GetEmployee(empId);
+                emp = database.GetEmployee(empId);
                 if (emp.IsPayDate(payDay))
                 {
                     DateTime startDay = emp.GetStartDay(payDay);

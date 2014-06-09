@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class ChangeMailTransactionTest
+    public class ChangeMailTransactionTest:SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
@@ -16,12 +16,12 @@ namespace PayRoll.UnitTest.BLL
             int empId = 28;
             string mailAddress = "MisStreet";
 
-            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "kara", "samubola", 3000);
+            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "kara", "samubola", 3000, database);
             addSalEmp.Execute();
 
-            ChangeMethodTranscation changeMailTrans = new ChangeMailTransaction(empId, mailAddress );
+            ChangeMethodTranscation changeMailTrans = new ChangeMailTransaction(empId, mailAddress, database);
             changeMailTrans.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
             Assert.IsTrue(emp.Method  is MailMethod);
 

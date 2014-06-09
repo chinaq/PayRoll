@@ -9,14 +9,14 @@ using PayRoll.BLL;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class AddHourlyEmployeeTest
+    public class AddHourlyEmployeeTest:SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
         {
-            AddEmployeeTransaction addEmp = new AddHourlyEmployee(2, "Cala", "Selee Street", 0.8);
+            AddEmployeeTransaction addEmp = new AddHourlyEmployee(2, "Cala", "Selee Street", 0.8, database);
             addEmp.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(2);
+            Employee emp = database.GetEmployee(2);
             Assert.IsNotNull(emp);
 
             PaymentClassification classification = emp.Classification;

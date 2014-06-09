@@ -12,8 +12,8 @@ namespace PayRoll.BLL
 
 
 
-        public ChangeDirectTransaction(int empId, string bank, string account)
-            : base(empId)
+        public ChangeDirectTransaction(int empId, string bank, string account, PayrollDatabase database)
+            : base(empId, database)
         {
             this.bank = bank;
             this.account = account;

@@ -7,8 +7,8 @@ namespace PayRoll.BLL
 {
     public class ChangeUnaffiliatedTransaction:ChangeAffiliationTransaction
     {
-        public ChangeUnaffiliatedTransaction(int empId)
-            : base(empId)
+        public ChangeUnaffiliatedTransaction(int empId, PayrollDatabase database)
+            : base(empId, database)
         { }
 
 
@@ -24,7 +24,7 @@ namespace PayRoll.BLL
             if (ua != null)
             {
                 int memberId = ua.MemberId;
-                PayrollDatabase.RemoveUnionMember(memberId);
+                database.RemoveUnionMember(memberId);
             }
         }
     }

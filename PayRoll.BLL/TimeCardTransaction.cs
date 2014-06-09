@@ -12,8 +12,8 @@ namespace PayRoll.BLL
         private readonly double hours;
 
 
-        public TimeCardTransaction(DateTime date, double hours, int empId)
-            : base()
+        public TimeCardTransaction(DateTime date, double hours, int empId, PayrollDatabase database)
+            : base(database)
         {
             this.date = date;
             this.hours = hours;
@@ -21,9 +21,9 @@ namespace PayRoll.BLL
         }
 
 
-        public void Execute()
+        public override void Execute()
         {
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
 
             if (emp != null)
             {

@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class ChangeDirectTransactionTest
+    public class ChangeDirectTransactionTest : SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
@@ -17,12 +17,12 @@ namespace PayRoll.UnitTest.BLL
             string bank = "MisBank";
             string account = "3329";
 
-            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "kara", "samubola", 3000);
+            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "kara", "samubola", 3000, database);
             addSalEmp.Execute();
 
-            ChangeMethodTranscation changeDirectTrans = new ChangeDirectTransaction(empId, bank, account);
+            ChangeMethodTranscation changeDirectTrans = new ChangeDirectTransaction(empId, bank, account, database);
             changeDirectTrans.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
             Assert.IsTrue(emp.Method is DirectMethod);
 

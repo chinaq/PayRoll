@@ -10,8 +10,8 @@ namespace PayRoll.BLL
         private readonly double commissionRate;
         private readonly double baseRate;
 
-        public AddCommissionedEmployee(int id, string name, string address, double baseRate, double commissionRate)
-            : base(id, name, address)
+        public AddCommissionedEmployee(int id, string name, string address, double baseRate, double commissionRate, PayrollDatabase database)
+            : base(id, name, address, database)
         {
             this.baseRate = baseRate;
             this.commissionRate = commissionRate;

@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class ChangeCommissionedTransactionTest
+    public class ChangeCommissionedTransactionTest:SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
@@ -17,12 +17,12 @@ namespace PayRoll.UnitTest.BLL
             double baseRate = 2.3;
             double commissionRate = 5.6;
 
-            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "kara", "samubola", 3000);
+            AddEmployeeTransaction addSalEmp = new AddSalariedEmployee(empId, "kara", "samubola", 3000, database);
             addSalEmp.Execute();
 
-            ChangeClassificationTranscation changeCommissionedTrans = new ChangeCommissionedTransaction(empId, baseRate, commissionRate);
+            ChangeClassificationTranscation changeCommissionedTrans = new ChangeCommissionedTransaction(empId, baseRate, commissionRate, database);
             changeCommissionedTrans.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
             Assert.IsTrue(emp.Classification is CommissionClassification);
 

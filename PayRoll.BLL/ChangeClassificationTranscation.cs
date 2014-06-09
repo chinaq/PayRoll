@@ -7,7 +7,7 @@ namespace PayRoll.BLL
 {
     public abstract class ChangeClassificationTranscation:ChangeEmployeeTransaction
     {
-        public ChangeClassificationTranscation(int empId):base(empId)
+        public ChangeClassificationTranscation(int empId, PayrollDatabase database):base(empId, database)
         {            
         }
 

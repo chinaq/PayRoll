@@ -7,8 +7,8 @@ namespace PayRoll.BLL
 {
     public abstract class ChangeMethodTranscation:ChangeEmployeeTransaction
     {
-        public ChangeMethodTranscation(int empId)
-            : base(empId)
+        public ChangeMethodTranscation(int empId, PayrollDatabase database)
+            : base(empId, database)
         { }
 
 

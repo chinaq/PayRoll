@@ -67,6 +67,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="HoldMethod.cs" />
     <Compile Include="HourlyClassification.cs" />
+    <Compile Include="InMemoryPayrollDatabase.cs" />
     <Compile Include="MailMethod.cs" />
     <Compile Include="MonthlySchedule.cs" />
     <Compile Include="NoAffiliation.cs" />

@@ -9,7 +9,7 @@ namespace PayRoll.BLL
     {
         private readonly string name;
 
-        public ChangeNameTransaction(int empId, string name):base(empId)
+        public ChangeNameTransaction(int empId, string name, PayrollDatabase database):base(empId, database)
         {
             this.name = name;
         }

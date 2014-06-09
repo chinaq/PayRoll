@@ -12,7 +12,7 @@ namespace PayRoll.BLL
         private readonly int empId;
 
 
-        public SalesReceiptTransaction(DateTime date, double amount, int empId)
+        public SalesReceiptTransaction(DateTime date, double amount, int empId, PayrollDatabase database): base(database)
         {
             this.date = date;
             this.amount = amount;
@@ -23,9 +23,9 @@ namespace PayRoll.BLL
 
         #region Transaction 成员
 
-        public void Execute()
+        public override void Execute()
         {
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             if (emp != null)
             {
                 CommissionClassification cc = emp.Classification as CommissionClassification;

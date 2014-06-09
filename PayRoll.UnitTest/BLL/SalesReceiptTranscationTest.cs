@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {
     [TestFixture]
-    public class SalesReceiptTranscationTest
+    public class SalesReceiptTranscationTest : SetUpInmemoryDb
     {
         [Test]
         public void ExecuteTest()
@@ -17,11 +17,11 @@ namespace PayRoll.UnitTest.BLL
             DateTime dateTime = new DateTime(2013, 2, 5);
             double amount = 2300;
 
-            AddEmployeeTransaction addEmpTrans = new AddCommissionedEmployee(empId, "Fasa", "quanwan", 2000, 3.12);
+            AddEmployeeTransaction addEmpTrans = new AddCommissionedEmployee(empId, "Fasa", "quanwan", 2000, 3.12, database);
             addEmpTrans.Execute();
-            SalesReceiptTransaction salesRecTrans = new SalesReceiptTransaction(dateTime, amount, empId);
+            SalesReceiptTransaction salesRecTrans = new SalesReceiptTransaction(dateTime, amount, empId, database);
             salesRecTrans.Execute();
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
 
             Assert.IsNotNull(emp);
             Assert.IsTrue(emp.Classification is CommissionClassification);

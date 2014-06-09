@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace PayRoll.UnitTest.BLL
 {   
     [TestFixture]
-    public class ChangeAddressTransactionTest
+    public class ChangeAddressTransactionTest:SetUpInmemoryDb
     {
         [Test]
         public void Execute()
@@ -18,15 +18,15 @@ namespace PayRoll.UnitTest.BLL
             string newAddress = "Beijing";
 
             //添加雇员
-            AddHourlyEmployee addHourlyEmp = new AddHourlyEmployee(empId, "Mana", "duva", 12.3);
+            AddHourlyEmployee addHourlyEmp = new AddHourlyEmployee(empId, "Mana", "duva", 12.3, database);
             addHourlyEmp.Execute();
 
             //改名字
-            ChangeEmployeeTransaction changeAddressTrans = new ChangeAddressTransaction(empId, newAddress);
+            ChangeEmployeeTransaction changeAddressTrans = new ChangeAddressTransaction(empId, newAddress, database);
             changeAddressTrans.Execute();
 
             //获取雇员
-            Employee emp = PayrollDatabase.GetEmployee(empId);
+            Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
 
             //检查名字

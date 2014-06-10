@@ -18,17 +18,6 @@ namespace PayRoll.BLL
             get { return hourlyRate; }
         }
 
-        public DateUtil DateUtil
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
         public HourlyClassification(double hourlyRate)
         {
             this.hourlyRate = hourlyRate;

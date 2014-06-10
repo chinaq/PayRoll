@@ -26,21 +26,19 @@ namespace PayRoll.DAL
 
         public void AddEmployee(Employee employee)
         {
-            string sql = "insert into Employee values(@EmpId, @Name, @Address, " + 
+            string sql = "insert into Employee values(@EmpId, @Name, @Address, " +
                 "@ScheduleType, @PaymentMethodType, @PaymentClassificationType)";
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@EmpId", employee.EmpId);
             command.Parameters.AddWithValue("@Name", employee.Name);
             command.Parameters.AddWithValue("@Address", employee.Address);
-            command.Parameters.AddWithValue("@ScheduleType", employee.Schedule.GetType().ToString());
+            command.Parameters.AddWithValue("@ScheduleType", ScheduleCode(employee.Schedule));
             command.Parameters.AddWithValue("@PaymentMethodType", employee.Method.GetType().ToString());
             command.Parameters.AddWithValue("@PaymentClassificationType", employee.Classification.GetType().ToString());
 
             command.ExecuteNonQuery();
         }
-
-
 
         public Employee GetEmployee(int id)
         {
@@ -72,5 +70,14 @@ namespace PayRoll.DAL
             throw new NotImplementedException();
         }
 
+
+
+        private String ScheduleCode(PaymentSchedule schedule)
+        {
+            if (schedule is MonthlySchedule)
+                return "monthly";
+            else
+                return "unknown";
+        }
     }
 }

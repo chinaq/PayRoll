@@ -22,17 +22,6 @@ namespace PayRoll.BLL
         public int MemberId
         {
             get { return memberId; }
-        }
-
-        public DateUtil DateUtil
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
         } 
 
 

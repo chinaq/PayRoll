@@ -61,7 +61,28 @@ namespace PayRoll.UnitTest.DAL
             Assert.AreEqual("George", row["Name"]);
             Assert.AreEqual("123 Baker St.", row["Address"]);
 
+        }
 
+
+        [Test]
+        public void ScheduleCodeTest()
+        {
+            Employee employee = new Employee(123, "George", "123 Baker St.");
+            employee.Schedule = new MonthlySchedule();
+            employee.Method = new DirectMethod("Bank 1", "12389");
+            employee.Classification = new SalariedClassifiction(1000.00);
+            database.AddEmployee(employee);
+
+            SqlCommand command = new SqlCommand(
+                "select * from Employee", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet dataset = new DataSet();
+            adapter.Fill(dataset);
+            DataTable table = dataset.Tables["table"];
+
+            Assert.AreEqual(1, table.Rows.Count);
+            DataRow row = table.Rows[0];
+            Assert.AreEqual("monthly", row["ScheduleType"]);
         }
 
     }

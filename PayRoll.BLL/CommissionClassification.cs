@@ -23,17 +23,6 @@ namespace PayRoll.BLL
             get { return commissionRate; }
         }
 
-        public DateUtil DateUtil
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
         public CommissionClassification(double baseRate, double commissionRate)
         {
             this.baseRate = baseRate;

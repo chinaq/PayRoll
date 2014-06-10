@@ -90,8 +90,11 @@
     <Compile Include="WeeklySchedule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CdDateUtil.cd" />
-    <None Include="CdPaymentClassification.cd" />
+    <None Include="ClassDiagram\CdAddEmployee.cd" />
+    <None Include="ClassDiagram\CdDateUtil.cd" />
+    <None Include="ClassDiagram\CdEmployee.cd" />
+    <None Include="ClassDiagram\CdPaymentClassification.cd" />
+    <None Include="ClassDiagram\CdPaymentSchdule.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

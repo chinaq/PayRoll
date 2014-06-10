@@ -58,7 +58,7 @@ namespace PayRoll.BLL
 
         public void AddEmployee(Employee employee)
         {
-            employees[employee.Empid] = employee;
+            employees[employee.EmpId] = employee;
         }
 
 

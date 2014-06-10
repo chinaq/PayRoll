@@ -7,7 +7,7 @@ namespace PayRoll.BLL
 {
     public class Employee
     {
-        private int empid;
+        private int empId;
         private string name;
         private string address;
         private PaymentClassification classification;
@@ -17,9 +17,9 @@ namespace PayRoll.BLL
 
         
 
-        public int Empid
+        public int EmpId
         {
-            get { return empid; }
+            get { return empId; }
         }
 
         public string Name
@@ -62,7 +62,7 @@ namespace PayRoll.BLL
 
         public Employee(int empid, string name, string address)
         {
-            this.empid = empid;
+            this.empId = empid;
             this.name = name;
             this.address = address;
         }

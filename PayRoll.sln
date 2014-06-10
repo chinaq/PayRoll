@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayRoll.BLL", "PayRoll.BLL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayRoll.UnitTest", "PayRoll.UnitTest\PayRoll.UnitTest.csproj", "{8BA5E3F8-0605-4114-8EE1-025BE0B1DEC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayRoll.Dal", "PayRoll.Dal\PayRoll.Dal.csproj", "{CE057889-FAA9-43CF-A8EB-EEDF2BCDB932}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayRoll.DAL", "PayRoll.Dal\PayRoll.DAL.csproj", "{CE057889-FAA9-43CF-A8EB-EEDF2BCDB932}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

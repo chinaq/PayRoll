@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
-  <TopNode>[0-1012]PayRoll.UnitTest.BLL.AddHourlyEmployeeTest</TopNode>
+  <TopNode>[0-1049]PayRoll.UnitTest.BLL.AddCommissionedEmployeeTest</TopNode>
   <SelectedNode>[0-1055]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>

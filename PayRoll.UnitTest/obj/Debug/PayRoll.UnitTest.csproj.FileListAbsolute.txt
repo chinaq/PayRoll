@@ -7,3 +7,5 @@ D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRol
 D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\obj\Debug\PayRoll.UnitTest.pdb
 D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.BLL.dll
 D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.BLL.pdb
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.Dal.dll
+D:\documents and settings\terryq\my documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.Dal.pdb

@@ -65,6 +65,7 @@
     <Compile Include="BLL\SetUpInmemoryDb.cs" />
     <Compile Include="BLL\TimeCardTransactionTest.cs" />
     <Compile Include="BLL\UnionAffiliationTest.cs" />
+    <Compile Include="DAL\SqlPayrollDatabaseTest.cs" />
     <Compile Include="Helper\NUnitHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,7 +74,12 @@
       <Project>{1A787730-B9AF-4610-9352-CF674F6B579A}</Project>
       <Name>PayRoll.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PayRoll.Dal\PayRoll.DAL.csproj">
+      <Project>{CE057889-FAA9-43CF-A8EB-EEDF2BCDB932}</Project>
+      <Name>PayRoll.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

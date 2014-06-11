@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
-  <TopNode>[0-1049]PayRoll.UnitTest.BLL.AddCommissionedEmployeeTest</TopNode>
-  <SelectedNode>[0-1055]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</SelectedNode>
+  <TopNode>[0-1051]PayRoll.UnitTest.BLL.ChangeCommissionedTransactionTest</TopNode>
+  <SelectedNode>[0-1058]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1055]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" Expanded="true" />
-    <Node UniqueName="[0-1056]PayRoll" Expanded="true" />
-    <Node UniqueName="[0-1057]PayRoll.UnitTest" Expanded="true" />
-    <Node UniqueName="[0-1058]PayRoll.UnitTest.BLL" Expanded="true" />
+    <Node UniqueName="[0-1058]D:\Documents and Settings\TerryQ\My Documents\visual studio 2010\Projects\PayRoll\PayRoll.UnitTest\bin\Debug\PayRoll.UnitTest.dll" Expanded="true" />
+    <Node UniqueName="[0-1059]PayRoll" Expanded="true" />
+    <Node UniqueName="[0-1060]PayRoll.UnitTest" Expanded="true" />
+    <Node UniqueName="[0-1061]PayRoll.UnitTest.BLL" Expanded="true" />
     <Node UniqueName="[0-1029]PayRoll.UnitTest.BLL.PayDayTransactionTest" Expanded="true" />
+    <Node UniqueName="[0-1062]PayRoll.UnitTest.DAL" Expanded="true" />
+    <Node UniqueName="[0-1055]PayRoll.UnitTest.DAL.SqlPayrollDatabaseTest" Expanded="true" />
   </Nodes>
 </VisualState>

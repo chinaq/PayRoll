@@ -94,6 +94,7 @@
     <None Include="ClassDiagram\CdDateUtil.cd" />
     <None Include="ClassDiagram\CdEmployee.cd" />
     <None Include="ClassDiagram\CdPaymentClassification.cd" />
+    <None Include="ClassDiagram\CdPaymentMethod.cd" />
     <None Include="ClassDiagram\CdPaymentSchdule.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

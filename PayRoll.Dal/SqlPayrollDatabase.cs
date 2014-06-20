@@ -14,7 +14,7 @@ namespace PayRoll.DAL
         private readonly SqlConnection connection;
         private string methodCode;
         private SqlCommand insertPaymentMethodCommand;
-
+        private SqlCommand insertEmployeeCommand;
 
 
         public SqlPayrollDatabase()
@@ -31,25 +31,47 @@ namespace PayRoll.DAL
         public void AddEmployee(Employee employee)
         {
             PrepareToSavePaymentMethod(employee);
+            PrepareToSaveEmployee(employee);
 
+            SqlTransaction transaction = connection.BeginTransaction("save Emlpoyee");
+            try
+            {
+                ExcuteCommand(insertEmployeeCommand, transaction);
+                ExcuteCommand(insertPaymentMethodCommand, transaction);
+                transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+        }
+
+        private void ExcuteCommand(SqlCommand command, SqlTransaction transaction)
+        {
+            if (command != null)
+            {
+                command.Connection = connection;
+                command.Transaction = transaction;
+                command.ExecuteNonQuery();
+            }
+        }
+
+        private void PrepareToSaveEmployee(Employee employee)
+        {
 
             string sql = "insert into Employee values(@EmpId, @Name, @Address, " +
                 "@ScheduleType, @PaymentMethodType, @PaymentClassificationType)";
-            SqlCommand command = new SqlCommand(sql, connection);
+            insertEmployeeCommand = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@EmpId", employee.EmpId);
-            command.Parameters.AddWithValue("@Name", employee.Name);
-            command.Parameters.AddWithValue("@Address", employee.Address);
-            command.Parameters.AddWithValue("@ScheduleType", ScheduleCode(employee.Schedule));
+            insertEmployeeCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+            insertEmployeeCommand.Parameters.AddWithValue("@Name", employee.Name);
+            insertEmployeeCommand.Parameters.AddWithValue("@Address", employee.Address);
+            insertEmployeeCommand.Parameters.AddWithValue("@ScheduleType", ScheduleCode(employee.Schedule));
 
             //SavePaymentMethod(employee);
-            command.Parameters.AddWithValue("@PaymentMethodType", methodCode);
-            command.Parameters.AddWithValue("@PaymentClassificationType", employee.Classification.GetType().ToString());
-
-            command.ExecuteNonQuery();
-
-            if (insertPaymentMethodCommand != null)
-                insertPaymentMethodCommand.ExecuteNonQuery();
+            insertEmployeeCommand.Parameters.AddWithValue("@PaymentMethodType", methodCode);
+            insertEmployeeCommand.Parameters.AddWithValue("@PaymentClassificationType", employee.Classification.GetType().ToString());
         }
 
 
@@ -111,25 +133,37 @@ namespace PayRoll.DAL
             {
                 methodCode = "directdeposit";
                 DirectMethod directMethod = method as DirectMethod;
-                string sql = "insert into DirectDepositAccount " +
-                    "values (@Bank, @Account, @EmpId)";
-                insertPaymentMethodCommand = new SqlCommand(sql, connection);
-                insertPaymentMethodCommand.Parameters.AddWithValue("@Bank", directMethod.Bank);
-                insertPaymentMethodCommand.Parameters.AddWithValue("@Account", directMethod.Account);
-                insertPaymentMethodCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+                CraateInsertDirectDespositCommand(employee, directMethod);
             }
             else if (method is MailMethod)
             {
                 methodCode = "mail";
                 MailMethod mailMethod = method as MailMethod;
-                string sql = "insert into PayCheckAddress " +
-                    "values (@Address, @EmpId)";
-                insertPaymentMethodCommand = new SqlCommand(sql, connection);
-                insertPaymentMethodCommand.Parameters.AddWithValue("@Address", mailMethod.Address);
-                insertPaymentMethodCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+                CreateInsertMailMethodCommand(employee, mailMethod);
             }
             else
                 methodCode = "unknown";
+        }
+
+        private void CreateInsertMailMethodCommand(Employee employee, MailMethod mailMethod)
+        {
+            string sql = "insert into PayCheckAddress " +
+                "values (@Address, @EmpId)";
+            insertPaymentMethodCommand = new SqlCommand(sql);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@Address", mailMethod.Address);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+
+        }
+
+        private void CraateInsertDirectDespositCommand(Employee employee, DirectMethod directMethod)
+        {
+            string sql = "insert into DirectDepositAccount " +
+                "values (@Bank, @Account, @EmpId)";
+            insertPaymentMethodCommand = new SqlCommand(sql);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@Bank", directMethod.Bank);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@Account", directMethod.Account);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+
         }
 
     }

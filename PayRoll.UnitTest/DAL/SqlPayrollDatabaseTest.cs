@@ -135,6 +135,26 @@ namespace PayRoll.UnitTest.DAL
 
 
 
+        [Test]
+        public void AddEmployeeTest_SaveDirectDepositMethod_InTransactional()
+        { 
+            //Null values won't go in the database.
+            DirectMethod method = new DirectMethod(null, null);
+            employee.Method = method;
+            try
+            {
+                database.AddEmployee(employee);
+                Assert.Fail("An exception needs to occur "
+                    + "for this test to work");
+            }
+            catch (SqlException)
+            { }
+
+            DataTable table = LoadTable("Employee");
+            Assert.AreEqual(0, table.Rows.Count);
+
+        }
+
 
 
 

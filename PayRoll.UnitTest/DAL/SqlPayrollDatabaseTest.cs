@@ -233,6 +233,24 @@ namespace PayRoll.UnitTest.DAL
 
 
 
+
+        [Test]
+        public void AddEmployeeTest_AddMailMethodFirst_AddHoldMethodSecond()
+        { 
+            employee.Method = new MailMethod("lulu street");
+            database.AddEmployee(employee);
+
+            Employee employee2 = new Employee(124, "sala", "s address");
+            employee2.Method = new HoldMethod();
+            database.AddEmployee(employee2);
+
+            DataTable table = LoadTable("PayCheckAddress");
+            Assert.AreEqual(1, table.Rows.Count);
+        }
+
+
+
+
         private void CheckClassificationCode(PaymentClassification classification, string expected)
         {
             employee.Classification = classification;

@@ -78,7 +78,7 @@
     <Compile Include="PaymentSchedule.cs" />
     <Compile Include="PayrollDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SalariedClassifiction.cs" />
+    <Compile Include="SalariedClassification.cs" />
     <Compile Include="SalesReceipt.cs" />
     <Compile Include="SalesReceiptTransaction.cs" />
     <Compile Include="ServiceCharge.cs" />

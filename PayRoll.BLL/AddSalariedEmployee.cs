@@ -19,7 +19,7 @@ namespace PayRoll.BLL
 
         protected override PaymentClassification MakeClassification()
         {
-            return new SalariedClassifiction(salary);
+            return new SalariedClassification(salary);
         }
 
         protected override PaymentSchedule MakeSchedule()

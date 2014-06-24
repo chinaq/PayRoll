@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PayRoll.BLL
 {
-    public class SalariedClassifiction : PaymentClassification
+    public class SalariedClassification : PaymentClassification
     {
         private readonly double salary;
 
@@ -14,7 +14,7 @@ namespace PayRoll.BLL
             get { return salary; }
         }
 
-        public SalariedClassifiction(double salary)
+        public SalariedClassification(double salary)
         {
             this.salary = salary;
         }

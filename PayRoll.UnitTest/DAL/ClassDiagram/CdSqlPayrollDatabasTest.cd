@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayRoll.UnitTest.DAL.SqlPayrollDatabaseTest">
+    <Position X="6" Y="0.75" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAgAAAAgBAhAAQAJBAACgIAAAgACAAAAAAAwUAA=</HashCode>
+      <FileName>DAL\SqlPayrollDatabaseTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="宋体" Size="9" />
+</ClassDiagram>

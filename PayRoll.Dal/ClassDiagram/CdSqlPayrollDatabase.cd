@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayRoll.DAL.SqlPayrollDatabase">
+    <Position X="5" Y="1.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAEIEAAAAIAoAgAAAABAESAUAACAACAAAAAEAAAAAA=</HashCode>
+      <FileName>SqlPayrollDatabase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="宋体" Size="9" />
+</ClassDiagram>

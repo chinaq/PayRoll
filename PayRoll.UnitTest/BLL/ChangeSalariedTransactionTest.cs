@@ -23,9 +23,9 @@ namespace PayRoll.UnitTest.BLL
             changeHourlyTrans.Execute();
             Employee emp = database.GetEmployee(empId);
             Assert.IsNotNull(emp);
-            Assert.IsTrue(emp.Classification is SalariedClassifiction);
+            Assert.IsTrue(emp.Classification is SalariedClassification);
 
-            SalariedClassifiction hc = emp.Classification as SalariedClassifiction;
+            SalariedClassification hc = emp.Classification as SalariedClassification;
             Assert.IsNotNull(hc);
             Assert.AreEqual(hc.Salary, salary);
         }

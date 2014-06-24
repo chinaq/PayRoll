@@ -24,11 +24,11 @@ namespace PayRoll.UnitTest.BLL
             PaymentSchedule schedule = emp.Schedule;
 
             Assert.AreEqual("Bob", emp.Name);
-            Assert.IsTrue(classifiction is SalariedClassifiction);
+            Assert.IsTrue(classifiction is SalariedClassification);
             Assert.IsTrue(method is HoldMethod);
             Assert.IsTrue(schedule is MonthlySchedule);
 
-            SalariedClassifiction salaryClassifiction = classifiction as SalariedClassifiction;     //as 不会报错，只会返回空
+            SalariedClassification salaryClassifiction = classifiction as SalariedClassification;     //as 不会报错，只会返回空
             Assert.AreEqual(1800, salaryClassifiction.Salary, 0.0001);
         }
     }

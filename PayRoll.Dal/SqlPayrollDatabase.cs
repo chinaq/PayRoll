@@ -13,8 +13,10 @@ namespace PayRoll.DAL
 
         private readonly SqlConnection connection;
         private string methodCode;
+        private string classificatinCode;
         private SqlCommand insertPaymentMethodCommand;
         private SqlCommand insertEmployeeCommand;
+        private SqlCommand insertPaymentClassificationCommand;
 
 
         public SqlPayrollDatabase()
@@ -27,10 +29,10 @@ namespace PayRoll.DAL
 
 
 
-
         public void AddEmployee(Employee employee)
         {
             PrepareToSavePaymentMethod(employee);
+            PrepareToSavePaymentClassification(employee);
             PrepareToSaveEmployee(employee);
 
             SqlTransaction transaction = connection.BeginTransaction("save Emlpoyee");
@@ -38,6 +40,7 @@ namespace PayRoll.DAL
             {
                 ExcuteCommand(insertEmployeeCommand, transaction);
                 ExcuteCommand(insertPaymentMethodCommand, transaction);
+                ExcuteCommand(insertPaymentClassificationCommand, transaction);
                 transaction.Commit();
             }
             catch (Exception e)
@@ -47,34 +50,6 @@ namespace PayRoll.DAL
             }
         }
 
-        private void ExcuteCommand(SqlCommand command, SqlTransaction transaction)
-        {
-            if (command != null)
-            {
-                command.Connection = connection;
-                command.Transaction = transaction;
-                command.ExecuteNonQuery();
-            }
-        }
-
-        private void PrepareToSaveEmployee(Employee employee)
-        {
-
-            string sql = "insert into Employee values(@EmpId, @Name, @Address, " +
-                "@ScheduleType, @PaymentMethodType, @PaymentClassificationType)";
-            insertEmployeeCommand = new SqlCommand(sql, connection);
-
-            insertEmployeeCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
-            insertEmployeeCommand.Parameters.AddWithValue("@Name", employee.Name);
-            insertEmployeeCommand.Parameters.AddWithValue("@Address", employee.Address);
-            insertEmployeeCommand.Parameters.AddWithValue("@ScheduleType", ScheduleCode(employee.Schedule));
-
-            //SavePaymentMethod(employee);
-            insertEmployeeCommand.Parameters.AddWithValue("@PaymentMethodType", methodCode);
-            insertEmployeeCommand.Parameters.AddWithValue("@PaymentClassificationType", employee.Classification.GetType().ToString());
-        }
-
-
 
 
 
@@ -83,30 +58,38 @@ namespace PayRoll.DAL
             throw new NotImplementedException();
         }
 
+
         public void DeleteEmployee(int id)
         {
             throw new NotImplementedException();
         }
+
 
         public void AddUnionMember(int unionMemberId, Employee employee)
         {
             throw new NotImplementedException();
         }
 
+
         public Employee GetUnionMember(int id)
         {
             throw new NotImplementedException();
         }
+
 
         public void RemoveUnionMember(int id)
         {
             throw new NotImplementedException();
         }
 
+
         public ArrayList GetAllEmployeeIds()
         {
             throw new NotImplementedException();
         }
+
+
+
 
 
 
@@ -122,6 +105,31 @@ namespace PayRoll.DAL
                 return "unknown";
         }
 
+
+
+
+
+        private void CraateInsertDirectDespositCommand(Employee employee, DirectMethod directMethod)
+        {
+            string sql = "insert into DirectDepositAccount " +
+                "values (@Bank, @Account, @EmpId)";
+            insertPaymentMethodCommand = new SqlCommand(sql);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@Bank", directMethod.Bank);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@Account", directMethod.Account);
+            insertPaymentMethodCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+
+        }
+
+
+        private void ExcuteCommand(SqlCommand command, SqlTransaction transaction)
+        {
+            if (command != null)
+            {
+                command.Connection = connection;
+                command.Transaction = transaction;
+                command.ExecuteNonQuery();
+            }
+        }
 
 
         private void PrepareToSavePaymentMethod(Employee employee)
@@ -145,6 +153,56 @@ namespace PayRoll.DAL
                 methodCode = "unknown";
         }
 
+
+        private void PrepareToSavePaymentClassification(Employee employee)
+        {
+            PaymentClassification paymentClassification = employee.Classification;
+
+            if (paymentClassification is HourlyClassification)
+            {
+                classificatinCode = "hourly";
+                HourlyClassification hourlyClassification = paymentClassification as HourlyClassification;
+                CreateInsertHourlyCommand(employee, hourlyClassification);
+            }
+            else if (paymentClassification is SalariedClassification)
+            {
+                classificatinCode = "salaried";
+                SalariedClassification salariedClassification = paymentClassification as SalariedClassification;
+                CreateInsertSalariedCommand(employee, salariedClassification);
+            }
+            else if (paymentClassification is CommissionClassification)
+            {
+                classificatinCode = "commission";
+                CommissionClassification commissionClassification = paymentClassification as CommissionClassification;
+                CreatInsertCommissionedCommand(employee, commissionClassification);
+            }
+            else
+                classificatinCode = "unknown";
+        }
+
+        private void CreatInsertCommissionedCommand(Employee employee, CommissionClassification commissionClassification)
+        {
+            string sql = "insert into CommissionedClassification " +
+                "values (@Salary, @Commission, @EmpId)";
+            insertPaymentClassificationCommand = new SqlCommand(sql);
+            insertPaymentClassificationCommand.Parameters.AddWithValue("@Salary", commissionClassification.BaseRate);
+            insertPaymentClassificationCommand.Parameters.AddWithValue("@Commission", commissionClassification.CommissionRate);
+            insertPaymentClassificationCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+        }
+
+        private void CreateInsertSalariedCommand(Employee employee, SalariedClassification salariedClassification)
+        {
+            string sql = "insert into SalariedClassification " +
+                "values (@Salary, @EmpId)";
+            insertPaymentClassificationCommand = new SqlCommand(sql);
+            insertPaymentClassificationCommand.Parameters.AddWithValue("@Salary", salariedClassification.Salary);
+            insertPaymentClassificationCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+        }
+
+
+
+
+
         private void CreateInsertMailMethodCommand(Employee employee, MailMethod mailMethod)
         {
             string sql = "insert into PayCheckAddress " +
@@ -152,18 +210,50 @@ namespace PayRoll.DAL
             insertPaymentMethodCommand = new SqlCommand(sql);
             insertPaymentMethodCommand.Parameters.AddWithValue("@Address", mailMethod.Address);
             insertPaymentMethodCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+        }
+
+
+
+
+        private void CreateInsertHourlyCommand(Employee employee, HourlyClassification hourlyClassification)
+        {
+            string sql = "insert into HourlyClassification " +
+                    "values (@HourlyRate, @EmpId)";
+            insertPaymentClassificationCommand = new SqlCommand(sql);
+            insertPaymentClassificationCommand.Parameters.AddWithValue("@HourlyRate", hourlyClassification.HourlyRate);
+            insertPaymentClassificationCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
 
         }
 
-        private void CraateInsertDirectDespositCommand(Employee employee, DirectMethod directMethod)
-        {
-            string sql = "insert into DirectDepositAccount " +
-                "values (@Bank, @Account, @EmpId)";
-            insertPaymentMethodCommand = new SqlCommand(sql);
-            insertPaymentMethodCommand.Parameters.AddWithValue("@Bank", directMethod.Bank);
-            insertPaymentMethodCommand.Parameters.AddWithValue("@Account", directMethod.Account);
-            insertPaymentMethodCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
 
+        private void PrepareToSaveEmployee(Employee employee)
+        {
+
+            string sql = "insert into Employee values(@EmpId, @Name, @Address, " +
+                "@ScheduleType, @PaymentMethodType, @PaymentClassificationType)";
+            insertEmployeeCommand = new SqlCommand(sql, connection);
+
+            insertEmployeeCommand.Parameters.AddWithValue("@EmpId", employee.EmpId);
+            insertEmployeeCommand.Parameters.AddWithValue("@Name", employee.Name);
+            insertEmployeeCommand.Parameters.AddWithValue("@Address", employee.Address);
+            insertEmployeeCommand.Parameters.AddWithValue("@ScheduleType", ScheduleCode(employee.Schedule));
+
+            //SavePaymentMethod(employee);
+            insertEmployeeCommand.Parameters.AddWithValue("@PaymentMethodType", methodCode);
+            insertEmployeeCommand.Parameters.AddWithValue("@PaymentClassificationType", classificatinCode);
+        }
+
+
+        private string ClassificationCode(PaymentClassification paymentClassification)
+        {
+            if (paymentClassification is HourlyClassification)
+                return "hourly";
+            else if (paymentClassification is SalariedClassification)
+                return "salaried";
+            else if (paymentClassification is CommissionClassification)
+                return "commission";
+            else 
+                return "unknown";
         }
 
     }
